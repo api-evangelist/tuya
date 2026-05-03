@@ -1,0 +1,46 @@
+{
+  "operation": "sendDeviceCommands",
+  "api": "Tuya Device Management API",
+  "request": {
+    "method": "POST",
+    "url": "https://openapi.tuyaus.com/v1.0/devices/bf3cf3ede9f40c09ber23p/commands",
+    "headers": {
+      "client_id": "YOUR_ACCESS_ID",
+      "sign": "HMAC_SHA256_SIGNATURE",
+      "t": "1714694400000",
+      "sign_method": "HMAC-SHA256",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "commands": [
+        {
+          "code": "switch_led",
+          "value": true
+        },
+        {
+          "code": "work_mode",
+          "value": "colour"
+        },
+        {
+          "code": "colour_data_v2",
+          "value": {
+            "h": 240,
+            "s": 1000,
+            "v": 800
+          }
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "result": true,
+      "success": true,
+      "t": 1714694400123
+    }
+  }
+}

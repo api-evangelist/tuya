@@ -1,0 +1,194 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Tuya Smart Home Control"
+  description: >-
+    IoT device management and control capability for smart home applications.
+    Combines device querying, real-time status monitoring, device commands,
+    and operation log analysis. Used by smart home app developers, facility
+    managers, and IoT platform integrators to monitor and control devices
+    such as lights, thermostats, sensors, and appliances.
+  tags:
+    - Tuya
+    - IoT
+    - Smart Home
+    - Device Control
+    - Automation
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TUYA_ACCESS_ID: TUYA_ACCESS_ID
+      TUYA_ACCESS_SECRET: TUYA_ACCESS_SECRET
+
+capability:
+  consumes:
+    - import: tuya-devices
+      location: ./shared/device-management.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: tuya-smart-home-api
+      description: "Unified REST API for Tuya smart home device control."
+      resources:
+        - path: /v1/devices
+          name: devices
+          description: "List and search IoT devices"
+          operations:
+            - method: GET
+              name: list-devices
+              description: "List all devices in the project"
+              call: "tuya-devices.list-devices"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/devices/{device_id}
+          name: device
+          description: "Retrieve a specific device"
+          operations:
+            - method: GET
+              name: get-device
+              description: "Get device details and current state"
+              call: "tuya-devices.get-device"
+              with:
+                device_id: "rest.device_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/devices/{device_id}/status
+          name: device-status
+          description: "Get device data point status"
+          operations:
+            - method: GET
+              name: get-device-status
+              description: "Get current status of all data points"
+              call: "tuya-devices.get-device-status"
+              with:
+                device_id: "rest.device_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/devices/{device_id}/commands
+          name: device-commands
+          description: "Send control commands to a device"
+          operations:
+            - method: POST
+              name: send-commands
+              description: "Control a device"
+              call: "tuya-devices.send-commands"
+              with:
+                device_id: "rest.device_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/devices/{device_id}/logs
+          name: device-logs
+          description: "Query device operation logs"
+          operations:
+            - method: GET
+              name: get-device-logs
+              description: "Get operation logs for a device"
+              call: "tuya-devices.get-device-logs"
+              with:
+                device_id: "rest.device_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: tuya-smart-home-mcp
+      transport: http
+      description: "MCP server for AI-assisted Tuya smart home device control."
+      tools:
+        - name: list-devices
+          description: "List all IoT devices registered to the Tuya project"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tuya-devices.list-devices"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-device
+          description: "Get details and current state of a specific IoT device"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tuya-devices.get-device"
+          with:
+            device_id: "tools.device_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-device-status
+          description: "Get the current value of all data points for a device (e.g., switch state, brightness, temperature)"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tuya-devices.get-device-status"
+          with:
+            device_id: "tools.device_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: control-device
+          description: "Send control commands to an IoT device. Specify code/value pairs for data points (e.g., switch_led=true, bright_value=500)"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "tuya-devices.send-commands"
+          with:
+            device_id: "tools.device_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: update-device-name
+          description: "Update the friendly display name of a device"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: true
+          call: "tuya-devices.update-device"
+          with:
+            device_id: "tools.device_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-device-logs
+          description: "Query operation and event logs for a device over a time range"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tuya-devices.get-device-logs"
+          with:
+            device_id: "tools.device_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: remove-device
+          description: "Remove and deregister a device from the cloud account"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "tuya-devices.remove-device"
+          with:
+            device_id: "tools.device_id"
+          outputParameters:
+            - type: object
+              mapping: "$."

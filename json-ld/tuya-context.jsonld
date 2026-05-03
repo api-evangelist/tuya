@@ -1,0 +1,97 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "tuya": "https://developer.tuya.com/schemas/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "iot": "https://www.w3.org/ns/iot/core#",
+
+    "Device": {
+      "@id": "tuya:Device",
+      "@context": {
+        "id": "tuya:deviceId",
+        "name": "schema:name",
+        "uid": "tuya:ownerId",
+        "local_key": "tuya:localKey",
+        "category": "tuya:productCategory",
+        "product_id": "tuya:productId",
+        "product_name": "tuya:productName",
+        "sub": {
+          "@id": "tuya:isSubDevice",
+          "@type": "xsd:boolean"
+        },
+        "uuid": "tuya:deviceUUID",
+        "owner_id": "tuya:homeId",
+        "online": {
+          "@id": "iot:online",
+          "@type": "xsd:boolean"
+        },
+        "status": "tuya:dataPoints",
+        "active_time": {
+          "@id": "tuya:activationTime",
+          "@type": "xsd:integer"
+        },
+        "create_time": {
+          "@id": "dcterms:created",
+          "@type": "xsd:integer"
+        },
+        "update_time": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:integer"
+        },
+        "time_zone": "tuya:timeZone",
+        "ip": "schema:ipAddressId"
+      }
+    },
+
+    "DataPoint": {
+      "@id": "tuya:DataPoint",
+      "@context": {
+        "code": "tuya:dpCode",
+        "value": "tuya:dpValue"
+      }
+    },
+
+    "DeviceLog": {
+      "@id": "tuya:DeviceLog",
+      "@context": {
+        "event_time": {
+          "@id": "tuya:eventTime",
+          "@type": "xsd:integer"
+        },
+        "code": "tuya:dpCode",
+        "value": "tuya:dpValue",
+        "event_id": "tuya:eventId"
+      }
+    },
+
+    "DeviceCommand": {
+      "@id": "tuya:DeviceCommand",
+      "@context": {
+        "commands": "tuya:commandList",
+        "code": "tuya:dpCode",
+        "value": "tuya:commandValue"
+      }
+    },
+
+    "User": {
+      "@id": "tuya:User",
+      "@context": {
+        "uid": "tuya:userId",
+        "nick_name": "schema:name",
+        "user_type": "tuya:userRole"
+      }
+    },
+
+    "FactoryInfo": {
+      "@id": "tuya:FactoryInfo",
+      "@context": {
+        "id": "tuya:deviceId",
+        "uuid": "tuya:deviceUUID",
+        "sn": "tuya:serialNumber",
+        "mac": "schema:identifier"
+      }
+    }
+  }
+}

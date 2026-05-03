@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://developer.tuya.com/schemas/tuya/command.json",
+  "title": "Tuya Device Command",
+  "description": "Represents a control command sent to a Tuya IoT device. Commands target specific data points using code/value pairs defined by the product schema.",
+  "type": "object",
+  "properties": {
+    "commands": {
+      "type": "array",
+      "description": "Array of data point commands to send to the device",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Data point code identifier (e.g., switch_led, work_mode, bright_value_v2, colour_data_v2)"
+          },
+          "value": {
+            "description": "Command value. Type depends on the data point: boolean for switches, integer for numeric values, string for enums, object for complex types like colour_data"
+          }
+        },
+        "required": ["code", "value"]
+      }
+    }
+  },
+  "required": ["commands"],
+  "examples": [
+    {
+      "commands": [
+        {"code": "switch_led", "value": true}
+      ]
+    },
+    {
+      "commands": [
+        {"code": "work_mode", "value": "colour"},
+        {"code": "colour_data_v2", "value": {"h": 120, "s": 1000, "v": 800}}
+      ]
+    },
+    {
+      "commands": [
+        {"code": "switch_1", "value": true},
+        {"code": "switch_2", "value": false}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+extends:
+  - spectral:oas
+
+rules:
+  # Tuya uses /v{version}/ prefix on all paths
+  tuya-versioned-paths:
+    description: All API paths must begin with a version segment like /v1.0/
+    message: "Path '{{path}}' must begin with /v1.0/ or /v{version}/"
+    severity: error
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/v[0-9]+\\.[0-9]+/"
+
+  # Tuya uses snake_case for path parameters and query parameters
+  tuya-snake-case-parameters:
+    description: Parameter names must use snake_case
+    message: "Parameter '{{value}}' must use snake_case"
+    severity: warn
+    given: "$.paths[*][*].parameters[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-z0-9_]*$"
+
+  # All operations must have an operationId
+  tuya-operation-id-required:
+    description: All operations must have an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: defined
+
+  # All operationIds must be camelCase
+  tuya-operation-id-camel-case:
+    description: Operation IDs must use camelCase
+    message: "OperationId '{{value}}' must use camelCase"
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  # All operations must have a summary
+  tuya-operation-summary-required:
+    description: All operations must have a summary
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: defined
+
+  # Summaries must use Title Case
+  tuya-summary-title-case:
+    description: Operation summaries must use Title Case
+    message: "Summary '{{value}}' must begin with a capital letter"
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z]"
+
+  # Tuya API responses use a standard wrapper with result, success, and t fields
+  tuya-response-success-field:
+    description: All 200 responses should include a success field in their schema
+    severity: hint
+    given: "$.paths[*][*].responses.200.content.application/json.schema.properties"
+    then:
+      field: success
+      function: defined
+
+  # Require description on all operations
+  tuya-operation-description-required:
+    description: All operations must have a description
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: description
+      function: defined
+
+  # Require tags on all operations
+  tuya-operation-tags-required:
+    description: All operations must have at least one tag
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: defined
+
+  # Tuya uses apiKey authentication via client_id header
+  tuya-security-scheme-apikey:
+    description: API must define a tuyaApiKey or equivalent apiKey security scheme
+    severity: warn
+    given: "$.components.securitySchemes"
+    then:
+      function: defined
+
+  # Require servers
+  tuya-servers-defined:
+    description: At least one server must be defined
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: defined
+
+  # Tags must use Title Case
+  tuya-tags-title-case:
+    description: All tags in info must use Title Case
+    severity: warn
+    given: "$.tags[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z]"

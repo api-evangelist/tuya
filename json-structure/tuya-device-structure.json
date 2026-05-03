@@ -1,0 +1,45 @@
+{
+  "name": "TuyaDevice",
+  "description": "Structure documentation for the Tuya Device resource returned by the Device Management API",
+  "type": "object",
+  "fields": [
+    {"name": "id", "type": "string", "required": true, "description": "Unique device identifier assigned by Tuya platform"},
+    {"name": "name", "type": "string", "required": true, "description": "Friendly display name for the device"},
+    {"name": "uid", "type": "string", "required": false, "description": "Owner user ID"},
+    {"name": "local_key", "type": "string", "required": false, "description": "Encryption key for local LAN communication"},
+    {"name": "category", "type": "string", "required": true, "description": "Product category code (e.g., dj=bulb, kg=switch, wk=thermostat)"},
+    {"name": "product_id", "type": "string", "required": true, "description": "Product identifier in Tuya catalog"},
+    {"name": "product_name", "type": "string", "required": false, "description": "Human-readable product name"},
+    {"name": "sub", "type": "boolean", "required": false, "description": "True if device connects via a gateway (sub-device)"},
+    {"name": "uuid", "type": "string", "required": false, "description": "Hardware UUID for device identification"},
+    {"name": "owner_id", "type": "string", "required": false, "description": "Home or asset owner identifier"},
+    {"name": "online", "type": "boolean", "required": true, "description": "Current connectivity status"},
+    {"name": "status", "type": "array<DataPoint>", "required": false, "description": "Current values of all device data points"},
+    {"name": "active_time", "type": "integer (unix seconds)", "required": false, "description": "First activation timestamp"},
+    {"name": "create_time", "type": "integer (unix seconds)", "required": false, "description": "Record creation timestamp"},
+    {"name": "update_time", "type": "integer (unix seconds)", "required": false, "description": "Last update timestamp"},
+    {"name": "time_zone", "type": "string", "required": false, "description": "IANA time zone of device location"},
+    {"name": "ip", "type": "string", "required": false, "description": "Last known IP address"}
+  ],
+  "nested": {
+    "DataPoint": {
+      "description": "A single device data point representing current state",
+      "fields": [
+        {"name": "code", "type": "string", "required": true, "description": "Data point identifier (e.g., switch_led, bright_value, colour_data_v2)"},
+        {"name": "value", "type": "any", "required": true, "description": "Current value, type varies: boolean, integer, string, or object"}
+      ]
+    }
+  },
+  "example": {
+    "id": "bf3cf3ede9f40c09ber23p",
+    "name": "Living Room Smart Bulb",
+    "category": "dj",
+    "product_id": "keyjXvXiF0M2kq1Q",
+    "online": true,
+    "status": [
+      {"code": "switch_led", "value": true},
+      {"code": "work_mode", "value": "colour"},
+      {"code": "bright_value_v2", "value": 1000}
+    ]
+  }
+}

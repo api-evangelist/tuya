@@ -1,0 +1,140 @@
+vocabulary:
+  name: Tuya
+  description: >-
+    Vocabulary and taxonomy for the Tuya Smart IoT platform covering APIs for
+    device management, smart home automation, industrial IoT, and cloud platform
+    services.
+  version: '1.0'
+  created: '2026-05-03'
+  modified: '2026-05-03'
+
+domains:
+  - name: Devices
+    description: IoT device concepts and terminology
+    terms:
+      - name: Device
+        definition: >-
+          A physical IoT product (e.g., smart bulb, plug, sensor, thermostat)
+          registered to a Tuya cloud project and manageable via the API.
+      - name: Device ID
+        definition: Unique alphanumeric identifier assigned by Tuya to each registered device.
+      - name: UUID
+        definition: Hardware-level unique identifier embedded in the device at manufacture.
+      - name: Local Key
+        definition: >-
+          Encryption key used to communicate with a device over the local network
+          (LAN control) without going through the cloud.
+      - name: Sub-Device
+        definition: >-
+          A device that connects to the Tuya network through a gateway device
+          rather than directly via Wi-Fi.
+      - name: Gateway
+        definition: >-
+          A hub device that bridges sub-devices (using Zigbee, Z-Wave, or other protocols)
+          to the cloud via an internet connection.
+      - name: Product ID
+        definition: Identifier for the product model in Tuya's product catalog.
+      - name: Product Category
+        definition: >-
+          Short code identifying the device type (e.g., dj=smart bulb, kg=switch,
+          wk=thermostat, PIR=motion sensor).
+
+  - name: Data Points
+    description: Device data point (DP) model
+    terms:
+      - name: Data Point (DP)
+        definition: >-
+          A single functional attribute of a device, identified by a code (e.g., switch_led)
+          with a typed value. DPs represent the capabilities and current state of a device.
+      - name: DP Code
+        definition: >-
+          String identifier for a data point, standardized by Tuya product standards
+          (e.g., switch_led, bright_value_v2, work_mode, colour_data_v2).
+      - name: DP Value
+        definition: >-
+          The current or target value of a data point. Types include boolean (on/off),
+          integer (numeric range), string (enum), raw (binary), and object (complex types).
+      - name: Schema
+        definition: The definition of all data points for a product, including codes, types, and valid ranges.
+
+  - name: Authentication
+    description: API access and authentication concepts
+    terms:
+      - name: Access ID
+        definition: >-
+          Client identifier for a Tuya cloud project, used as the client_id in
+          API request headers.
+      - name: Access Secret
+        definition: >-
+          Secret key paired with Access ID to generate HMAC-SHA256 request signatures.
+      - name: Sign
+        definition: >-
+          HMAC-SHA256 signature computed from Access ID, Access Secret, timestamp,
+          and request details, included in the sign header for authentication.
+      - name: Access Token
+        definition: >-
+          Short-lived bearer token obtained from the token endpoint, required for
+          subsequent API calls. Has a configurable expiry window.
+      - name: Token Endpoint
+        definition: >-
+          API endpoint used to exchange Access ID and signed credentials for an
+          Access Token.
+
+  - name: Smart Home
+    description: Smart home management concepts
+    terms:
+      - name: Home
+        definition: A logical grouping of IoT devices representing a residential or commercial space.
+      - name: Room
+        definition: A sub-grouping of devices within a home, representing a physical space.
+      - name: Scene
+        definition: >-
+          A saved configuration of device states that can be activated with a single action
+          (tap-to-run scenes).
+      - name: Automation
+        definition: >-
+          A rule-based trigger that automatically executes device commands when
+          conditions are met (e.g., turn on lights at sunset).
+      - name: OTA Update
+        definition: >-
+          Over-the-air firmware update delivered to devices via the Tuya cloud platform.
+
+  - name: Platform
+    description: Tuya cloud platform concepts
+    terms:
+      - name: Cloud Project
+        definition: >-
+          A container in the Tuya developer platform that holds API credentials,
+          device registrations, and project-level settings.
+      - name: Data Center
+        definition: >-
+          Regional cloud infrastructure where device data is stored and processed.
+          Tuya operates data centers in US, EU, China, and India.
+      - name: Pulsar
+        definition: >-
+          Tuya's message streaming service (based on Apache Pulsar) used to receive
+          real-time device event notifications via a subscription model.
+      - name: QQJF
+        definition: A Tuya device pairing protocol for soft-AP configuration mode.
+
+  - name: Industrial IoT
+    description: Industrial and enterprise IoT concepts
+    terms:
+      - name: Asset
+        definition: >-
+          An organizational unit in industrial IoT deployments representing equipment,
+          buildings, or infrastructure assets that own devices.
+      - name: Industrial Device
+        definition: >-
+          An IoT device deployed in industrial, commercial, or enterprise settings
+          managed through the Industrial API rather than the Smart Home API.
+
+tags:
+  - IoT
+  - Smart Home
+  - Devices
+  - Device Management
+  - Automation
+  - Industrial IoT
+  - Cloud Platform
+  - Protocol Buffers

@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://developer.tuya.com/schemas/tuya/device.json",
+  "title": "Tuya Device",
+  "description": "Represents an IoT device registered to a Tuya cloud project, including its attributes, current status, and association with a user and product.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique device identifier assigned by Tuya"
+    },
+    "name": {
+      "type": "string",
+      "description": "Friendly display name for the device"
+    },
+    "uid": {
+      "type": "string",
+      "description": "Owner user ID"
+    },
+    "local_key": {
+      "type": "string",
+      "description": "Local encryption key for direct LAN communication"
+    },
+    "category": {
+      "type": "string",
+      "description": "Device product category code (e.g., dj=smart bulb, kg=switch)"
+    },
+    "product_id": {
+      "type": "string",
+      "description": "Product ID in the Tuya product catalog"
+    },
+    "product_name": {
+      "type": "string",
+      "description": "Human-readable product name"
+    },
+    "sub": {
+      "type": "boolean",
+      "description": "Whether this device is a sub-device connected via a gateway"
+    },
+    "uuid": {
+      "type": "string",
+      "description": "Device UUID (hardware identifier)"
+    },
+    "owner_id": {
+      "type": "string",
+      "description": "Identifier of the home or asset that owns this device"
+    },
+    "online": {
+      "type": "boolean",
+      "description": "Whether the device is currently online and reachable"
+    },
+    "status": {
+      "type": "array",
+      "description": "Current values of all device data points",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Data point identifier code (e.g., switch_led, bright_value)"
+          },
+          "value": {
+            "description": "Current value of the data point, type varies by code"
+          }
+        },
+        "required": ["code", "value"]
+      }
+    },
+    "active_time": {
+      "type": "integer",
+      "description": "Unix timestamp (seconds) of when the device was first activated"
+    },
+    "create_time": {
+      "type": "integer",
+      "description": "Unix timestamp (seconds) of device record creation"
+    },
+    "update_time": {
+      "type": "integer",
+      "description": "Unix timestamp (seconds) of last device update"
+    },
+    "time_zone": {
+      "type": "string",
+      "description": "Time zone of the device location (IANA format)"
+    },
+    "ip": {
+      "type": "string",
+      "description": "IP address of the device when last online"
+    }
+  },
+  "required": ["id", "name", "category", "product_id", "online"]
+}

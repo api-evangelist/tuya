@@ -1,0 +1,48 @@
+{
+  "operation": "getDevice",
+  "api": "Tuya Device Management API",
+  "request": {
+    "method": "GET",
+    "url": "https://openapi.tuyaus.com/v1.0/devices/bf3cf3ede9f40c09ber23p",
+    "headers": {
+      "client_id": "YOUR_ACCESS_ID",
+      "sign": "HMAC_SHA256_SIGNATURE",
+      "t": "1714694400000",
+      "sign_method": "HMAC-SHA256"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "result": {
+        "id": "bf3cf3ede9f40c09ber23p",
+        "name": "Living Room Smart Bulb",
+        "uid": "ay1234567890abcdef",
+        "local_key": "abc1234def5678",
+        "category": "dj",
+        "product_id": "keyjXvXiF0M2kq1Q",
+        "product_name": "Smart Dimmable Bulb",
+        "sub": false,
+        "uuid": "6c34e3b3c5b02c56",
+        "owner_id": "12345678",
+        "online": true,
+        "status": [
+          {"code": "switch_led", "value": true},
+          {"code": "work_mode", "value": "colour"},
+          {"code": "bright_value_v2", "value": 1000},
+          {"code": "colour_data_v2", "value": {"h": 120, "s": 1000, "v": 1000}}
+        ],
+        "active_time": 1609459200,
+        "create_time": 1609459200,
+        "update_time": 1714694400,
+        "time_zone": "America/Los_Angeles",
+        "ip": "192.168.1.100"
+      },
+      "success": true,
+      "t": 1714694400000
+    }
+  }
+}
