@@ -4,103 +4,36 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Tuya
 providerId: tuya
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - IoT
   - Smart Home
-  - Devices
   - Cloud Platform
-  - Automation
-  - Industrial IoT
-  - Device Management
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Tuya API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
+description: Tuya documents that its IoT cloud handles 100M+ daily device requests and references rate-limit
+  / API-call rules in its developer portal, but the public landing pages did not surface concrete per-second
+  / per-minute numbers during reconciliation. Effective limits are documented per API in the developer
+  console and may differ between trial and commercial Cloud Development Packages.
+sources:
+  - https://developer.tuya.com/en/docs/iot/api-reference?id=Kbd2pu2ompov0
+  - https://developer.tuya.com/
+notes: No public per-second / per-minute numbers reachable from the public marketing site; Tuya's per-API
+  rate-limit page is referenced from the developer portal and varies by service.
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Tuya Device Management API
-      - Tuya Smart Home API
-      - Tuya Authorization API
-      - Tuya Industry API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Tuya Device Management API
-      - Tuya Smart Home API
-      - Tuya Authorization API
-      - Tuya Industry API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Tuya Device Management API
-      - Tuya Smart Home API
-      - Tuya Authorization API
-      - Tuya Industry API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Tuya Device Management API
-      - Tuya Smart Home API
-      - Tuya Authorization API
-      - Tuya Industry API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Tuya Device Management API
-      - Tuya Smart Home API
-      - Tuya Authorization API
-      - Tuya Industry API
+  - name: Per-API Cloud Limits
+    scope: project/api-key
+    metric: varies
+    limit: see Tuya developer portal API reference
+    notes: Each cloud API documents its own QPS / quota limits inside the developer portal; numbers vary
+      by service and by Cloud Development Package tier.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Per-Project / Per-Key Scoping
+    description: Tuya scopes API call quotas to the developer project and access key (Client ID / Secret);
+      throttling is applied at that level rather than globally per account.
+  - name: Trial vs Commercial Quotas
+    description: Trial-tier developer projects receive smaller cloud quotas than projects with a commercial
+      Cloud Development Package; upgrade is required to lift them.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
