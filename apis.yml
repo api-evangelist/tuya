@@ -8,7 +8,7 @@ description: >-
   data analytics, and industry-specific integrations across smart home, energy,
   security, and industrial verticals. Tuya operates six global data centers and
   handles over 100 million concurrent requests.
-type: Contract
+kind: contract
 access: 3rd-Party
 image: https://images.tuya.com/smart/tuya-logo.png
 tags:
@@ -40,7 +40,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developer.tuya.com/en/docs/cloud/device-management?id=K9g6rfntdz78a
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developer.tuya.com/en/docs/iot/quick-start1?id=K95ztz9u9t89n
 
   - aid: tuya:smart-home
@@ -79,7 +79,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developer.tuya.com/en/docs/iot/guide-explanation?id=Ke0wpiw0dwxun
-      - type: API Reference
+      - type: APIReference
         url: https://developer.tuya.com/en/docs/iot/api-reference?id=Ka7qb7vhber64
 
   - aid: tuya:industry
@@ -105,17 +105,17 @@ common:
     url: https://developer.tuya.com/en/
   - type: Documentation
     url: https://developer.tuya.com/en/docs/cloud/
-  - type: Sign Up
+  - type: SignUp
     url: https://auth.tuya.com/
-  - type: Getting Started
+  - type: GettingStarted
     url: https://developer.tuya.com/en/docs/iot/quick-start1?id=K95ztz9u9t89n
   - type: API Explorer
     url: https://developer.tuya.com/en/docs/cloud
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/tuya
   - type: Authentication
     url: https://developer.tuya.com/en/docs/iot/guide-explanation?id=Ke0wpiw0dwxun
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://developer.tuya.com/en/docs/iot/compliance?id=Ka9t0qa3qihn3
   - type: Portal
     url: https://iot.tuya.com/
