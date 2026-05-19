@@ -20,7 +20,7 @@ tags:
   - Industrial IoT
   - Device Management
 created: '2025-03-01'
-modified: '2026-05-03'
+modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/tuya/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
@@ -131,6 +131,12 @@ common:
     url: rules/tuya-rules.yml
   - type: Vocabulary
     url: vocabulary/tuya-vocabulary.yml
+  - name: MCP Server
+    url: https://github.com/tuya/tuya-mcp-sdk
+    type: MCPServer
+  - name: Agent Skills
+    url: https://github.com/tuya/tuya-openclaw-skills
+    type: AgentSkill
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
