@@ -1,0 +1,146 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tuya Device Management API — Device Control
+  description: 'Tuya Device Management API — Device Control. 3 operations. Lead operation: Send Device Commands. Self-contained
+    Naftiko capability covering one Tuya business surface.'
+  tags:
+  - Tuya
+  - Device Control
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TUYA_API_KEY: TUYA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: device-management-device-control
+    baseUri: https://openapi.tuyaus.com
+    description: Tuya Device Management API — Device Control business capability. Self-contained, no shared references.
+    resources:
+    - name: v1.0-devices-device_id-commands
+      path: /v1.0/devices/{device_id}/commands
+      operations:
+      - name: senddevicecommands
+        method: POST
+        description: Send Device Commands
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1.0-devices-device_id-reset-factory
+      path: /v1.0/devices/{device_id}/reset-factory
+      operations:
+      - name: resetdevicefactory
+        method: PUT
+        description: Reset Device to Factory Settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1.0-devices-device_id-status
+      path: /v1.0/devices/{device_id}/status
+      operations:
+      - name: getdevicestatus
+        method: GET
+        description: Get Device Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: client_id
+      value: '{{env.TUYA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: device-management-device-control-rest
+    port: 8080
+    description: REST adapter for Tuya Device Management API — Device Control. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1-0/devices/{device-id}/commands
+      name: v1-0-devices-device-id-commands
+      description: REST surface for v1.0-devices-device_id-commands.
+      operations:
+      - method: POST
+        name: senddevicecommands
+        description: Send Device Commands
+        call: device-management-device-control.senddevicecommands
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1-0/devices/{device-id}/reset-factory
+      name: v1-0-devices-device-id-reset-factory
+      description: REST surface for v1.0-devices-device_id-reset-factory.
+      operations:
+      - method: PUT
+        name: resetdevicefactory
+        description: Reset Device to Factory Settings
+        call: device-management-device-control.resetdevicefactory
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1-0/devices/{device-id}/status
+      name: v1-0-devices-device-id-status
+      description: REST surface for v1.0-devices-device_id-status.
+      operations:
+      - method: GET
+        name: getdevicestatus
+        description: Get Device Status
+        call: device-management-device-control.getdevicestatus
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: device-management-device-control-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tuya Device Management API — Device Control. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: send-device-commands
+      description: Send Device Commands
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: device-management-device-control.senddevicecommands
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: reset-device-factory-settings
+      description: Reset Device to Factory Settings
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: device-management-device-control.resetdevicefactory
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-device-status
+      description: Get Device Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: device-management-device-control.getdevicestatus
+      outputParameters:
+      - type: object
+        mapping: $.

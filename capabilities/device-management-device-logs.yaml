@@ -1,0 +1,112 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tuya Device Management API — Device Logs
+  description: 'Tuya Device Management API — Device Logs. 1 operations. Lead operation: Get Device Operation Logs. Self-contained
+    Naftiko capability covering one Tuya business surface.'
+  tags:
+  - Tuya
+  - Device Logs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TUYA_API_KEY: TUYA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: device-management-device-logs
+    baseUri: https://openapi.tuyaus.com
+    description: Tuya Device Management API — Device Logs business capability. Self-contained, no shared references.
+    resources:
+    - name: v1.0-devices-device_id-logs
+      path: /v1.0/devices/{device_id}/logs
+      operations:
+      - name: getdevicelogs
+        method: GET
+        description: Get Device Operation Logs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: type
+          in: query
+          type: integer
+          description: Log type (1=device, 7=tap-to-run automation)
+          required: true
+        - name: start_row_key
+          in: query
+          type: string
+          description: Pagination cursor
+        - name: start_time
+          in: query
+          type: integer
+          description: Start timestamp in milliseconds
+        - name: end_time
+          in: query
+          type: integer
+          description: End timestamp in milliseconds
+        - name: size
+          in: query
+          type: integer
+          description: Number of records to return (max 50)
+        - name: codes
+          in: query
+          type: string
+          description: Comma-separated list of data point codes to filter by
+    authentication:
+      type: apikey
+      key: client_id
+      value: '{{env.TUYA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: device-management-device-logs-rest
+    port: 8080
+    description: REST adapter for Tuya Device Management API — Device Logs. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1-0/devices/{device-id}/logs
+      name: v1-0-devices-device-id-logs
+      description: REST surface for v1.0-devices-device_id-logs.
+      operations:
+      - method: GET
+        name: getdevicelogs
+        description: Get Device Operation Logs
+        call: device-management-device-logs.getdevicelogs
+        with:
+          type: rest.type
+          start_row_key: rest.start_row_key
+          start_time: rest.start_time
+          end_time: rest.end_time
+          size: rest.size
+          codes: rest.codes
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: device-management-device-logs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tuya Device Management API — Device Logs. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-device-operation-logs
+      description: Get Device Operation Logs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: device-management-device-logs.getdevicelogs
+      with:
+        type: tools.type
+        start_row_key: tools.start_row_key
+        start_time: tools.start_time
+        end_time: tools.end_time
+        size: tools.size
+        codes: tools.codes
+      outputParameters:
+      - type: object
+        mapping: $.

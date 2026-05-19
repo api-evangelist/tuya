@@ -1,0 +1,287 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tuya Device Management API — Devices
+  description: 'Tuya Device Management API — Devices. 6 operations. Lead operation: List Devices. Self-contained Naftiko capability
+    covering one Tuya business surface.'
+  tags:
+  - Tuya
+  - Devices
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TUYA_API_KEY: TUYA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: device-management-devices
+    baseUri: https://openapi.tuyaus.com
+    description: Tuya Device Management API — Devices business capability. Self-contained, no shared references.
+    resources:
+    - name: v1.0-devices
+      path: /v1.0/devices
+      operations:
+      - name: listdevices
+        method: GET
+        description: List Devices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: device_ids
+          in: query
+          type: string
+          description: Comma-separated list of device IDs to query
+        - name: schema
+          in: query
+          type: boolean
+          description: Include device schema information
+        - name: last_row_key
+          in: query
+          type: string
+          description: Pagination cursor key
+        - name: page_size
+          in: query
+          type: integer
+          description: Number of results per page (max 100)
+    - name: v1.0-devices-factory-infos
+      path: /v1.0/devices/factory-infos
+      operations:
+      - name: getdevicefactoryinfos
+        method: GET
+        description: Get Device Factory Information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: device_ids
+          in: query
+          type: string
+          description: Comma-separated list of device IDs
+          required: true
+    - name: v1.0-devices-device_id
+      path: /v1.0/devices/{device_id}
+      operations:
+      - name: getdevice
+        method: GET
+        description: Get Device Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatedevice
+        method: PUT
+        description: Update Device Name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: removedevice
+        method: DELETE
+        description: Remove Device
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1.0-users-uid-devices
+      path: /v1.0/users/{uid}/devices
+      operations:
+      - name: listuserdevices
+        method: GET
+        description: List User Devices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uid
+          in: path
+          type: string
+          description: Unique user identifier
+          required: true
+        - name: last_row_key
+          in: query
+          type: string
+          description: Pagination cursor key
+        - name: page_size
+          in: query
+          type: integer
+          description: Number of results per page
+    authentication:
+      type: apikey
+      key: client_id
+      value: '{{env.TUYA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: device-management-devices-rest
+    port: 8080
+    description: REST adapter for Tuya Device Management API — Devices. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1-0/devices
+      name: v1-0-devices
+      description: REST surface for v1.0-devices.
+      operations:
+      - method: GET
+        name: listdevices
+        description: List Devices
+        call: device-management-devices.listdevices
+        with:
+          device_ids: rest.device_ids
+          schema: rest.schema
+          last_row_key: rest.last_row_key
+          page_size: rest.page_size
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1-0/devices/factory-infos
+      name: v1-0-devices-factory-infos
+      description: REST surface for v1.0-devices-factory-infos.
+      operations:
+      - method: GET
+        name: getdevicefactoryinfos
+        description: Get Device Factory Information
+        call: device-management-devices.getdevicefactoryinfos
+        with:
+          device_ids: rest.device_ids
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1-0/devices/{device-id}
+      name: v1-0-devices-device-id
+      description: REST surface for v1.0-devices-device_id.
+      operations:
+      - method: GET
+        name: getdevice
+        description: Get Device Details
+        call: device-management-devices.getdevice
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatedevice
+        description: Update Device Name
+        call: device-management-devices.updatedevice
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: removedevice
+        description: Remove Device
+        call: device-management-devices.removedevice
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1-0/users/{uid}/devices
+      name: v1-0-users-uid-devices
+      description: REST surface for v1.0-users-uid-devices.
+      operations:
+      - method: GET
+        name: listuserdevices
+        description: List User Devices
+        call: device-management-devices.listuserdevices
+        with:
+          uid: rest.uid
+          last_row_key: rest.last_row_key
+          page_size: rest.page_size
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: device-management-devices-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tuya Device Management API — Devices. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-devices
+      description: List Devices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: device-management-devices.listdevices
+      with:
+        device_ids: tools.device_ids
+        schema: tools.schema
+        last_row_key: tools.last_row_key
+        page_size: tools.page_size
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-device-factory-information
+      description: Get Device Factory Information
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: device-management-devices.getdevicefactoryinfos
+      with:
+        device_ids: tools.device_ids
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-device-details
+      description: Get Device Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: device-management-devices.getdevice
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-device-name
+      description: Update Device Name
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: device-management-devices.updatedevice
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: remove-device
+      description: Remove Device
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: device-management-devices.removedevice
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-user-devices
+      description: List User Devices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: device-management-devices.listuserdevices
+      with:
+        uid: tools.uid
+        last_row_key: tools.last_row_key
+        page_size: tools.page_size
+      outputParameters:
+      - type: object
+        mapping: $.
