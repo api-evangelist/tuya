@@ -131,6 +131,8 @@ common:
   - name: Agent Skills
     url: https://github.com/tuya/tuya-openclaw-skills
     type: AgentSkill
+  - type: LLMsTxt
+    url: https://developer.tuya.com/llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
