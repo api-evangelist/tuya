@@ -1,0 +1,443 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tuya Device Management API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "client_id",
+      "value": "{{client_id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Devices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Device Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.tuyaus.com/v1.0/devices/:device_id",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific device including its attributes, status, online state, and product information."
+        },
+        {
+          "info": {
+            "name": "Update Device Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://openapi.tuyaus.com/v1.0/devices/:device_id",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify the friendly name of a specified device."
+        },
+        {
+          "info": {
+            "name": "Remove Device",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://openapi.tuyaus.com/v1.0/devices/:device_id",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ]
+          },
+          "docs": "Remove a device from the cloud account and deregister it."
+        },
+        {
+          "info": {
+            "name": "List Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.tuyaus.com/v1.0/devices",
+            "params": [
+              {
+                "name": "device_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of device IDs to query"
+              },
+              {
+                "name": "schema",
+                "value": "",
+                "type": "query",
+                "description": "Include device schema information"
+              },
+              {
+                "name": "last_row_key",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor key"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (max 100)"
+              }
+            ]
+          },
+          "docs": "Query devices associated with a cloud project by application, product, or a set of device IDs."
+        },
+        {
+          "info": {
+            "name": "List User Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.tuyaus.com/v1.0/users/:uid/devices",
+            "params": [
+              {
+                "name": "uid",
+                "value": "",
+                "type": "path",
+                "description": "Unique user identifier"
+              },
+              {
+                "name": "last_row_key",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor key"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Retrieve all devices associated with a specific user account."
+        },
+        {
+          "info": {
+            "name": "Get Device Factory Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.tuyaus.com/v1.0/devices/factory-infos",
+            "params": [
+              {
+                "name": "device_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of device IDs"
+              }
+            ]
+          },
+          "docs": "Retrieve manufacturing and factory information for one or more devices."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Device Control",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send Device Commands",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://openapi.tuyaus.com/v1.0/devices/:device_id/commands",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send one or more control commands to a device. Commands correspond to device data points (DPs) defined in the product schema."
+        },
+        {
+          "info": {
+            "name": "Get Device Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.tuyaus.com/v1.0/devices/:device_id/status",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the current status of all data points for a device."
+        },
+        {
+          "info": {
+            "name": "Reset Device to Factory Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://openapi.tuyaus.com/v1.0/devices/:device_id/reset-factory",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ]
+          },
+          "docs": "Restore a device to its factory default settings and unpair it from the current account."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Device Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Device Operation Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.tuyaus.com/v1.0/devices/:device_id/logs",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Log type (1=device, 7=tap-to-run automation)"
+              },
+              {
+                "name": "start_row_key",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start timestamp in milliseconds"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End timestamp in milliseconds"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return (max 50)"
+              },
+              {
+                "name": "codes",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of data point codes to filter by"
+              }
+            ]
+          },
+          "docs": "Query the operation logs of a specified device filtered by event type, code, and time range."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sub Devices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Sub Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.tuyaus.com/v1.0/devices/:device_id/sub-devices",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of sub-devices connected through a gateway device."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Device Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add Device User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://openapi.tuyaus.com/v1.0/devices/:device_id/users",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Associate a user with a device to grant access permissions."
+        },
+        {
+          "info": {
+            "name": "Get Device User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.tuyaus.com/v1.0/devices/:device_id/users/:user_id",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "User ID"
+              }
+            ]
+          },
+          "docs": "Retrieve information about a user associated with a device."
+        },
+        {
+          "info": {
+            "name": "Update Device User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://openapi.tuyaus.com/v1.0/devices/:device_id/users/:user_id",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "User ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify a user's role or permissions for a device."
+        },
+        {
+          "info": {
+            "name": "Remove Device User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://openapi.tuyaus.com/v1.0/devices/:device_id/users/:user_id",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "User ID"
+              }
+            ]
+          },
+          "docs": "Remove a user's association with a device."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
