@@ -95,7 +95,7 @@ common:
     url: https://developer.tuya.com/en/
   - type: Documentation
     url: https://developer.tuya.com/en/docs/cloud/
-  - type: SignUp
+  - type: Signup
     url: https://auth.tuya.com/
   - type: GettingStarted
     url: https://developer.tuya.com/en/docs/iot/quick-start1?id=K95ztz9u9t89n
@@ -117,7 +117,7 @@ common:
     url: json-schema/tuya-command-schema.json
   - type: JSONLD
     url: json-ld/tuya-context.jsonld
-  - type: Spectral Rules
+  - type: SpectralRules
     url: rules/tuya-rules.yml
   - type: Vocabulary
     url: vocabulary/tuya-vocabulary.yml
@@ -126,8 +126,8 @@ common:
     type: MCPServer
   - name: Agent Skills
     url: https://github.com/tuya/tuya-openclaw-skills
-    type: AgentSkill
-  - type: LLMsTxt
+    type: AgentSkills
+  - type: LlmsText
     url: https://developer.tuya.com/llms.txt
 maintainers:
   - FN: Kin Lane
