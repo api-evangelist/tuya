@@ -1,0 +1,33 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: developer.tuya.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  1 07:52:36 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: iot.tuya.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  1 07:52:36 2026 GMT
+  hsts: null
+- host: openapi.tuyaus.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 10 03:32:32 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+domains:
+- domain: tuya.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: tuyaus.com
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false

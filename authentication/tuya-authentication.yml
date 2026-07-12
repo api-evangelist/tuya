@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/tuya-device-management-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: tuyaApiKey
+  type: apiKey
+  in: header
+  parameter: client_id
+  description: Tuya API uses HMAC-SHA256 signed requests. Include your Access ID as the client_id
+    header and provide a sign header computed from your Access ID, Access Secret, and timestamp.
+  sources:
+  - openapi/tuya-device-management-openapi.yml

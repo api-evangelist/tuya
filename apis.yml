@@ -89,6 +89,10 @@ apis:
       - type: Documentation
         url: https://developer.tuya.com/en/docs/cloud
 common:
+  - type: DomainSecurity
+    url: security/tuya-domain-security.yml
+  - type: Authentication
+    url: authentication/tuya-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/tuya-smart
   - type: Website
@@ -132,3 +136,5 @@ common:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+  - type: Blog
+    url: https://www.tuya.com/news
