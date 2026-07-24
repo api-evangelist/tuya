@@ -1,0 +1,190 @@
+openapi: 3.1.0
+info:
+  title: Tuya Device Management Device Control Device Users API
+  description: The Tuya Device Management API provides endpoints for querying, controlling, and managing IoT devices registered to a Tuya cloud project. Capabilities include device information retrieval, device control, factory reset, device renaming, sub-device listing, operation log queries, and user-device association management.
+  version: '1.0'
+  contact:
+    name: Tuya Developer Support
+    url: https://developer.tuya.com/en/
+    email: developer@tuya.com
+  termsOfService: https://developer.tuya.com/en/docs/iot/compliance?id=Ka9t0qa3qihn3
+servers:
+- url: https://openapi.tuyaus.com
+  description: Tuya US Data Center
+- url: https://openapi.tuyaeu.com
+  description: Tuya EU Data Center
+- url: https://openapi.tuyain.com
+  description: Tuya India Data Center
+security:
+- tuyaApiKey: []
+tags:
+- name: Device Users
+  description: Manage user associations with devices
+paths:
+  /v1.0/devices/{device_id}/users:
+    post:
+      operationId: addDeviceUser
+      summary: Add Device User
+      description: Associate a user with a device to grant access permissions.
+      tags:
+      - Device Users
+      parameters:
+      - $ref: '#/components/parameters/DeviceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                uid:
+                  type: string
+                  description: User ID to associate with the device
+                user_type:
+                  type: integer
+                  description: User role (1=owner, 2=shared user)
+              required:
+              - uid
+              - user_type
+      responses:
+        '200':
+          description: User added to device
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Device not found
+  /v1.0/devices/{device_id}/users/{user_id}:
+    get:
+      operationId: getDeviceUser
+      summary: Get Device User
+      description: Retrieve information about a user associated with a device.
+      tags:
+      - Device Users
+      parameters:
+      - $ref: '#/components/parameters/DeviceId'
+      - name: user_id
+        in: path
+        required: true
+        description: User ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Device user details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: User or device not found
+    put:
+      operationId: updateDeviceUser
+      summary: Update Device User
+      description: Modify a user's role or permissions for a device.
+      tags:
+      - Device Users
+      parameters:
+      - $ref: '#/components/parameters/DeviceId'
+      - name: user_id
+        in: path
+        required: true
+        description: User ID
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_type:
+                  type: integer
+                  description: Updated user role
+      responses:
+        '200':
+          description: User updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+    delete:
+      operationId: removeDeviceUser
+      summary: Remove Device User
+      description: Remove a user's association with a device.
+      tags:
+      - Device Users
+      parameters:
+      - $ref: '#/components/parameters/DeviceId'
+      - name: user_id
+        in: path
+        required: true
+        description: User ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+          description: Whether the operation succeeded
+        success:
+          type: boolean
+          description: Request success flag
+        t:
+          type: integer
+          format: int64
+          description: Response timestamp in milliseconds
+    UserResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            uid:
+              type: string
+              description: User ID
+            nick_name:
+              type: string
+              description: User display name
+            user_type:
+              type: integer
+              description: User role (1=owner, 2=shared)
+        success:
+          type: boolean
+        t:
+          type: integer
+          format: int64
+  parameters:
+    DeviceId:
+      name: device_id
+      in: path
+      required: true
+      description: Unique device identifier
+      schema:
+        type: string
+  securitySchemes:
+    tuyaApiKey:
+      type: apiKey
+      in: header
+      name: client_id
+      description: Tuya API uses HMAC-SHA256 signed requests. Include your Access ID as the client_id header and provide a sign header computed from your Access ID, Access Secret, and timestamp.

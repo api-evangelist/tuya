@@ -1,0 +1,147 @@
+openapi: 3.1.0
+info:
+  title: Tuya Device Management Device Control Sub Devices API
+  description: The Tuya Device Management API provides endpoints for querying, controlling, and managing IoT devices registered to a Tuya cloud project. Capabilities include device information retrieval, device control, factory reset, device renaming, sub-device listing, operation log queries, and user-device association management.
+  version: '1.0'
+  contact:
+    name: Tuya Developer Support
+    url: https://developer.tuya.com/en/
+    email: developer@tuya.com
+  termsOfService: https://developer.tuya.com/en/docs/iot/compliance?id=Ka9t0qa3qihn3
+servers:
+- url: https://openapi.tuyaus.com
+  description: Tuya US Data Center
+- url: https://openapi.tuyaeu.com
+  description: Tuya EU Data Center
+- url: https://openapi.tuyain.com
+  description: Tuya India Data Center
+security:
+- tuyaApiKey: []
+tags:
+- name: Sub Devices
+  description: Manage gateway sub-devices
+paths:
+  /v1.0/devices/{device_id}/sub-devices:
+    get:
+      operationId: listSubDevices
+      summary: List Sub Devices
+      description: Retrieve a list of sub-devices connected through a gateway device.
+      tags:
+      - Sub Devices
+      parameters:
+      - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '200':
+          description: List of sub-devices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceListResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Gateway device not found
+components:
+  parameters:
+    DeviceId:
+      name: device_id
+      in: path
+      required: true
+      description: Unique device identifier
+      schema:
+        type: string
+  schemas:
+    DeviceListResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            devices:
+              type: array
+              items:
+                $ref: '#/components/schemas/Device'
+            last_row_key:
+              type: string
+              description: Pagination cursor for next page
+            has_more:
+              type: boolean
+              description: Whether more results are available
+        success:
+          type: boolean
+        t:
+          type: integer
+          format: int64
+    Device:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique device identifier
+        name:
+          type: string
+          description: Device friendly name
+        uid:
+          type: string
+          description: Owner user ID
+        local_key:
+          type: string
+          description: Local encryption key for LAN communication
+        category:
+          type: string
+          description: Product category code
+        product_id:
+          type: string
+          description: Product identifier
+        product_name:
+          type: string
+          description: Product name
+        sub:
+          type: boolean
+          description: Whether device is a sub-device (connected via gateway)
+        uuid:
+          type: string
+          description: Device UUID
+        owner_id:
+          type: string
+          description: Home or asset owner identifier
+        online:
+          type: boolean
+          description: Whether device is currently online
+        status:
+          type: array
+          description: Current data point statuses
+          items:
+            $ref: '#/components/schemas/DataPoint'
+        active_time:
+          type: integer
+          format: int64
+          description: Activation timestamp in seconds
+        create_time:
+          type: integer
+          format: int64
+          description: Creation timestamp in seconds
+        update_time:
+          type: integer
+          format: int64
+          description: Last update timestamp in seconds
+        time_zone:
+          type: string
+          description: Device time zone
+        ip:
+          type: string
+          description: Device IP address
+    DataPoint:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Data point code identifier
+        value:
+          description: Current value of the data point
+  securitySchemes:
+    tuyaApiKey:
+      type: apiKey
+      in: header
+      name: client_id
+      description: Tuya API uses HMAC-SHA256 signed requests. Include your Access ID as the client_id header and provide a sign header computed from your Access ID, Access Secret, and timestamp.

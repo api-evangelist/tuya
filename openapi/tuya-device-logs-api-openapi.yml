@@ -1,0 +1,133 @@
+openapi: 3.1.0
+info:
+  title: Tuya Device Management Device Control Device Logs API
+  description: The Tuya Device Management API provides endpoints for querying, controlling, and managing IoT devices registered to a Tuya cloud project. Capabilities include device information retrieval, device control, factory reset, device renaming, sub-device listing, operation log queries, and user-device association management.
+  version: '1.0'
+  contact:
+    name: Tuya Developer Support
+    url: https://developer.tuya.com/en/
+    email: developer@tuya.com
+  termsOfService: https://developer.tuya.com/en/docs/iot/compliance?id=Ka9t0qa3qihn3
+servers:
+- url: https://openapi.tuyaus.com
+  description: Tuya US Data Center
+- url: https://openapi.tuyaeu.com
+  description: Tuya EU Data Center
+- url: https://openapi.tuyain.com
+  description: Tuya India Data Center
+security:
+- tuyaApiKey: []
+tags:
+- name: Device Logs
+  description: Query device operation and event logs
+paths:
+  /v1.0/devices/{device_id}/logs:
+    get:
+      operationId: getDeviceLogs
+      summary: Get Device Operation Logs
+      description: Query the operation logs of a specified device filtered by event type, code, and time range.
+      tags:
+      - Device Logs
+      parameters:
+      - $ref: '#/components/parameters/DeviceId'
+      - name: type
+        in: query
+        required: true
+        description: Log type (1=device, 7=tap-to-run automation)
+        schema:
+          type: integer
+          enum:
+          - 1
+          - 7
+      - name: start_row_key
+        in: query
+        description: Pagination cursor
+        schema:
+          type: string
+      - name: start_time
+        in: query
+        description: Start timestamp in milliseconds
+        schema:
+          type: integer
+          format: int64
+      - name: end_time
+        in: query
+        description: End timestamp in milliseconds
+        schema:
+          type: integer
+          format: int64
+      - name: size
+        in: query
+        description: Number of records to return (max 50)
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 50
+          default: 20
+      - name: codes
+        in: query
+        description: Comma-separated list of data point codes to filter by
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Device operation logs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceLogsResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Device not found
+components:
+  parameters:
+    DeviceId:
+      name: device_id
+      in: path
+      required: true
+      description: Unique device identifier
+      schema:
+        type: string
+  schemas:
+    DeviceLogsResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            logs:
+              type: array
+              items:
+                $ref: '#/components/schemas/DeviceLog'
+            current_row_key:
+              type: string
+            has_next:
+              type: boolean
+        success:
+          type: boolean
+        t:
+          type: integer
+          format: int64
+    DeviceLog:
+      type: object
+      properties:
+        event_time:
+          type: integer
+          format: int64
+          description: Event timestamp in milliseconds
+        code:
+          type: string
+          description: Data point code that changed
+        value:
+          type: string
+          description: New value after the change
+        event_id:
+          type: string
+          description: Unique event identifier
+  securitySchemes:
+    tuyaApiKey:
+      type: apiKey
+      in: header
+      name: client_id
+      description: Tuya API uses HMAC-SHA256 signed requests. Include your Access ID as the client_id header and provide a sign header computed from your Access ID, Access Secret, and timestamp.
