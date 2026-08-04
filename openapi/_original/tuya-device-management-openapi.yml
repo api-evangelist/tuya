@@ -1,0 +1,748 @@
+openapi: 3.1.0
+info:
+  title: Tuya Device Management API
+  description: >-
+    The Tuya Device Management API provides endpoints for querying, controlling,
+    and managing IoT devices registered to a Tuya cloud project. Capabilities
+    include device information retrieval, device control, factory reset, device
+    renaming, sub-device listing, operation log queries, and user-device
+    association management.
+  version: '1.0'
+  contact:
+    name: Tuya Developer Support
+    url: https://developer.tuya.com/en/
+    email: developer@tuya.com
+  termsOfService: https://developer.tuya.com/en/docs/iot/compliance?id=Ka9t0qa3qihn3
+servers:
+  - url: https://openapi.tuyaus.com
+    description: Tuya US Data Center
+  - url: https://openapi.tuyaeu.com
+    description: Tuya EU Data Center
+  - url: https://openapi.tuyain.com
+    description: Tuya India Data Center
+tags:
+  - name: Devices
+    description: Query and manage IoT device information
+  - name: Device Control
+    description: Control and command IoT devices
+  - name: Device Logs
+    description: Query device operation and event logs
+  - name: Sub Devices
+    description: Manage gateway sub-devices
+  - name: Device Users
+    description: Manage user associations with devices
+security:
+  - tuyaApiKey: []
+paths:
+  /v1.0/devices/{device_id}:
+    get:
+      operationId: getDevice
+      summary: Get Device Details
+      description: >-
+        Retrieve detailed information about a specific device including its
+        attributes, status, online state, and product information.
+      tags:
+        - Devices
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '200':
+          description: Device details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Device not found
+    put:
+      operationId: updateDevice
+      summary: Update Device Name
+      description: >-
+        Modify the friendly name of a specified device.
+      tags:
+        - Devices
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: New friendly name for the device
+              required:
+                - name
+      responses:
+        '200':
+          description: Device updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Device not found
+    delete:
+      operationId: removeDevice
+      summary: Remove Device
+      description: >-
+        Remove a device from the cloud account and deregister it.
+      tags:
+        - Devices
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '200':
+          description: Device removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Device not found
+
+  /v1.0/devices:
+    get:
+      operationId: listDevices
+      summary: List Devices
+      description: >-
+        Query devices associated with a cloud project by application, product,
+        or a set of device IDs.
+      tags:
+        - Devices
+      parameters:
+        - name: device_ids
+          in: query
+          description: Comma-separated list of device IDs to query
+          schema:
+            type: string
+        - name: schema
+          in: query
+          description: Include device schema information
+          schema:
+            type: boolean
+        - name: last_row_key
+          in: query
+          description: Pagination cursor key
+          schema:
+            type: string
+        - name: page_size
+          in: query
+          description: Number of results per page (max 100)
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+      responses:
+        '200':
+          description: List of devices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceListResponse'
+        '401':
+          description: Unauthorized
+
+  /v1.0/users/{uid}/devices:
+    get:
+      operationId: listUserDevices
+      summary: List User Devices
+      description: >-
+        Retrieve all devices associated with a specific user account.
+      tags:
+        - Devices
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: Unique user identifier
+          schema:
+            type: string
+        - name: last_row_key
+          in: query
+          description: Pagination cursor key
+          schema:
+            type: string
+        - name: page_size
+          in: query
+          description: Number of results per page
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+      responses:
+        '200':
+          description: List of user devices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceListResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: User not found
+
+  /v1.0/devices/{device_id}/commands:
+    post:
+      operationId: sendDeviceCommands
+      summary: Send Device Commands
+      description: >-
+        Send one or more control commands to a device. Commands correspond to
+        device data points (DPs) defined in the product schema.
+      tags:
+        - Device Control
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                commands:
+                  type: array
+                  description: List of commands to send to the device
+                  items:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        description: Data point code (e.g., switch_1, bright_value)
+                      value:
+                        description: Command value matching the data point type
+              required:
+                - commands
+      responses:
+        '200':
+          description: Commands sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Invalid command
+        '401':
+          description: Unauthorized
+        '404':
+          description: Device not found
+
+  /v1.0/devices/{device_id}/status:
+    get:
+      operationId: getDeviceStatus
+      summary: Get Device Status
+      description: >-
+        Retrieve the current status of all data points for a device.
+      tags:
+        - Device Control
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '200':
+          description: Device status data points
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceStatusResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Device not found
+
+  /v1.0/devices/{device_id}/reset-factory:
+    put:
+      operationId: resetDeviceFactory
+      summary: Reset Device to Factory Settings
+      description: >-
+        Restore a device to its factory default settings and unpair it from
+        the current account.
+      tags:
+        - Device Control
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '200':
+          description: Device reset initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Device not found
+
+  /v1.0/devices/{device_id}/logs:
+    get:
+      operationId: getDeviceLogs
+      summary: Get Device Operation Logs
+      description: >-
+        Query the operation logs of a specified device filtered by event type,
+        code, and time range.
+      tags:
+        - Device Logs
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+        - name: type
+          in: query
+          required: true
+          description: Log type (1=device, 7=tap-to-run automation)
+          schema:
+            type: integer
+            enum: [1, 7]
+        - name: start_row_key
+          in: query
+          description: Pagination cursor
+          schema:
+            type: string
+        - name: start_time
+          in: query
+          description: Start timestamp in milliseconds
+          schema:
+            type: integer
+            format: int64
+        - name: end_time
+          in: query
+          description: End timestamp in milliseconds
+          schema:
+            type: integer
+            format: int64
+        - name: size
+          in: query
+          description: Number of records to return (max 50)
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 20
+        - name: codes
+          in: query
+          description: Comma-separated list of data point codes to filter by
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Device operation logs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceLogsResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Device not found
+
+  /v1.0/devices/{device_id}/sub-devices:
+    get:
+      operationId: listSubDevices
+      summary: List Sub Devices
+      description: >-
+        Retrieve a list of sub-devices connected through a gateway device.
+      tags:
+        - Sub Devices
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '200':
+          description: List of sub-devices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceListResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Gateway device not found
+
+  /v1.0/devices/factory-infos:
+    get:
+      operationId: getDeviceFactoryInfos
+      summary: Get Device Factory Information
+      description: >-
+        Retrieve manufacturing and factory information for one or more devices.
+      tags:
+        - Devices
+      parameters:
+        - name: device_ids
+          in: query
+          required: true
+          description: Comma-separated list of device IDs
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Device factory information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FactoryInfoResponse'
+        '401':
+          description: Unauthorized
+
+  /v1.0/devices/{device_id}/users:
+    post:
+      operationId: addDeviceUser
+      summary: Add Device User
+      description: >-
+        Associate a user with a device to grant access permissions.
+      tags:
+        - Device Users
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                uid:
+                  type: string
+                  description: User ID to associate with the device
+                user_type:
+                  type: integer
+                  description: User role (1=owner, 2=shared user)
+              required:
+                - uid
+                - user_type
+      responses:
+        '200':
+          description: User added to device
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Device not found
+
+  /v1.0/devices/{device_id}/users/{user_id}:
+    get:
+      operationId: getDeviceUser
+      summary: Get Device User
+      description: >-
+        Retrieve information about a user associated with a device.
+      tags:
+        - Device Users
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+        - name: user_id
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Device user details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: User or device not found
+    put:
+      operationId: updateDeviceUser
+      summary: Update Device User
+      description: >-
+        Modify a user's role or permissions for a device.
+      tags:
+        - Device Users
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+        - name: user_id
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_type:
+                  type: integer
+                  description: Updated user role
+      responses:
+        '200':
+          description: User updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+    delete:
+      operationId: removeDeviceUser
+      summary: Remove Device User
+      description: >-
+        Remove a user's association with a device.
+      tags:
+        - Device Users
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+        - name: user_id
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized
+
+components:
+  parameters:
+    DeviceId:
+      name: device_id
+      in: path
+      required: true
+      description: Unique device identifier
+      schema:
+        type: string
+
+  securitySchemes:
+    tuyaApiKey:
+      type: apiKey
+      in: header
+      name: client_id
+      description: >-
+        Tuya API uses HMAC-SHA256 signed requests. Include your Access ID as
+        the client_id header and provide a sign header computed from your
+        Access ID, Access Secret, and timestamp.
+
+  schemas:
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+          description: Whether the operation succeeded
+        success:
+          type: boolean
+          description: Request success flag
+        t:
+          type: integer
+          format: int64
+          description: Response timestamp in milliseconds
+
+    DeviceResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Device'
+        success:
+          type: boolean
+        t:
+          type: integer
+          format: int64
+
+    DeviceListResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            devices:
+              type: array
+              items:
+                $ref: '#/components/schemas/Device'
+            last_row_key:
+              type: string
+              description: Pagination cursor for next page
+            has_more:
+              type: boolean
+              description: Whether more results are available
+        success:
+          type: boolean
+        t:
+          type: integer
+          format: int64
+
+    Device:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique device identifier
+        name:
+          type: string
+          description: Device friendly name
+        uid:
+          type: string
+          description: Owner user ID
+        local_key:
+          type: string
+          description: Local encryption key for LAN communication
+        category:
+          type: string
+          description: Product category code
+        product_id:
+          type: string
+          description: Product identifier
+        product_name:
+          type: string
+          description: Product name
+        sub:
+          type: boolean
+          description: Whether device is a sub-device (connected via gateway)
+        uuid:
+          type: string
+          description: Device UUID
+        owner_id:
+          type: string
+          description: Home or asset owner identifier
+        online:
+          type: boolean
+          description: Whether device is currently online
+        status:
+          type: array
+          description: Current data point statuses
+          items:
+            $ref: '#/components/schemas/DataPoint'
+        active_time:
+          type: integer
+          format: int64
+          description: Activation timestamp in seconds
+        create_time:
+          type: integer
+          format: int64
+          description: Creation timestamp in seconds
+        update_time:
+          type: integer
+          format: int64
+          description: Last update timestamp in seconds
+        time_zone:
+          type: string
+          description: Device time zone
+        ip:
+          type: string
+          description: Device IP address
+
+    DataPoint:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Data point code identifier
+        value:
+          description: Current value of the data point
+
+    DeviceStatusResponse:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataPoint'
+        success:
+          type: boolean
+        t:
+          type: integer
+          format: int64
+
+    DeviceLogsResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            logs:
+              type: array
+              items:
+                $ref: '#/components/schemas/DeviceLog'
+            current_row_key:
+              type: string
+            has_next:
+              type: boolean
+        success:
+          type: boolean
+        t:
+          type: integer
+          format: int64
+
+    DeviceLog:
+      type: object
+      properties:
+        event_time:
+          type: integer
+          format: int64
+          description: Event timestamp in milliseconds
+        code:
+          type: string
+          description: Data point code that changed
+        value:
+          type: string
+          description: New value after the change
+        event_id:
+          type: string
+          description: Unique event identifier
+
+    FactoryInfoResponse:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Device ID
+              uuid:
+                type: string
+                description: Device UUID
+              sn:
+                type: string
+                description: Serial number
+              mac:
+                type: string
+                description: MAC address
+        success:
+          type: boolean
+        t:
+          type: integer
+          format: int64
+
+    UserResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            uid:
+              type: string
+              description: User ID
+            nick_name:
+              type: string
+              description: User display name
+            user_type:
+              type: integer
+              description: User role (1=owner, 2=shared)
+        success:
+          type: boolean
+        t:
+          type: integer
+          format: int64

@@ -1,0 +1,22 @@
+{
+  "provider": "tuya",
+  "sources": [
+    "tuya-device-control-api-openapi.yml",
+    "tuya-device-logs-api-openapi.yml",
+    "tuya-device-users-api-openapi.yml",
+    "tuya-devices-api-openapi.yml",
+    "tuya-sub-devices-api-openapi.yml"
+  ],
+  "outputs": [
+    "tuya-device-control-api-openapi.yml",
+    "tuya-device-logs-api-openapi.yml",
+    "tuya-device-users-api-openapi.yml",
+    "tuya-devices-api-openapi.yml",
+    "tuya-sub-devices-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
