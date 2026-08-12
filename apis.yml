@@ -180,7 +180,7 @@ common:
   - type: Portal
     url: https://iot.tuya.com/
   - type: OpenAPI
-    url: openapi/tuya-device-management-openapi.yml
+    url: openapi/_original/tuya-device-management-openapi.yml
   - type: JSONSchema
     url: json-schema/tuya-device-schema.json
   - type: JSONSchema
