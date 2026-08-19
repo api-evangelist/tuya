@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tuya Device Management Device Control Device Logs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "client_id",
+      "value": "{{client_id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Device Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Device Operation Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.tuyaus.com/v1.0/devices/:device_id/logs",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Log type (1=device, 7=tap-to-run automation)"
+              },
+              {
+                "name": "start_row_key",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start timestamp in milliseconds"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End timestamp in milliseconds"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return (max 50)"
+              },
+              {
+                "name": "codes",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of data point codes to filter by"
+              }
+            ]
+          },
+          "docs": "Query the operation logs of a specified device filtered by event type, code, and time range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

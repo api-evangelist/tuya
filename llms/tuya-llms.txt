@@ -1,0 +1,145 @@
+# Tuya Developer Platform
+
+> The Tuya Developer Platform is the central hub for IoT developers building connected smart devices with Tuya. It provides comprehensive documentation, SDKs, APIs, cloud development tools, app development kits, device development resources, mini program development (native + Ray framework), SmartUI component library, certification services, and AIoT solutions at scale. The platform spans 4,400+ documentation pages across English and Chinese.
+
+## Website
+
+- Developer Home: https://developer.tuya.com/en/
+- Platform Overview: https://developer.tuya.com/en/overview
+- Cloud Development: https://developer.tuya.com/en/docs/cloud
+- Cloud Platform Services: https://developer.tuya.com/en/cloud-development
+- Cube Private Cloud: https://developer.tuya.com/en/docs/cubeprivate-cloud
+
+## App Development
+
+- App Development Overview: https://developer.tuya.com/en/docs/app-development/
+- Smart Home App SDK: https://developer.tuya.com/en/smart-home-app-sdk
+- Smart Life App Guide: https://developer.tuya.com/en/docs/iot/tuya-smart-app-smart-life-app-advantages?id=K989rqa49rluq
+- Apple Home Integration: https://developer.tuya.com/en/docs/iot/apple-app-id?id=Kbr8luuqjml8x
+- Google Home Integration: https://developer.tuya.com/en/docs/iot/googlehomeguide?id=K9j6yqpeqzzgp
+- Home Assistant Integration: https://developer.tuya.com/en/docs/iot/Home-assistant-tuya-intergration?id=Kb0eqjig0utdd
+
+## Device Development
+
+- IoT Device Development: https://developer.tuya.com/en/docs/iot-device-dev
+- IoT Development Overview: https://developer.tuya.com/en/docs/iot
+- TuyaOS Development Board: https://developer.tuya.com/en/docs/iot-device-dev/tuyaos-development-board?id=Kcke8d4n8c9om
+- TuyaOS Wind IDE: https://developer.tuya.com/en/docs/iot-device-dev/tuyaos-wind-ide?id=Kbfy6kfuuqqu3
+- Network Configuration: https://developer.tuya.com/en/docs/iot-device-dev/TuyaOS-iot_abi_network_config_mode?id=Kc67t32r3pdmf
+- Zigbee & Wi-Fi Gateway: https://developer.tuya.com/en/docs/iot/Zigbee_Wi-Fi_gateway?id=Kbg4vdcz4bbpr
+- Device Linking Guide: https://developer.tuya.com/en/docs/iot/link-devices?id=Ka471nu1sfmkl
+- Multi-Device Smart Control: https://developer.tuya.com/en/docs/iot/Multi-Device_Smart_Control?id=Kci4lobz0fh2e
+- Panel Development: https://developer.tuya.com/en/docs/iot/Panel-development?id=Kcxglrmpgf60z
+- Module Debugging: https://developer.tuya.com/en/docs/iot/module-debugging-assistant-instruction?id=K9hs0cj3lf0au
+- HSV & RGB Color: https://developer.tuya.com/en/docs/iot-device-dev/HSV-and-RGB-introduction?id=Kb7170gfsw006
+- Tuya Smart User Manual: https://developer.tuya.com/en/docs/iot/user-manual-for-tuya-smart-v3177?id=K9obrofrfk4sk
+
+## Mini App Development — EN
+
+### Overview & Guides
+
+- Mini App Home: https://developer.tuya.com/en/miniapp
+- Mini App Guide: https://developer.tuya.com/en/miniapp/guide
+- Product Introduction: https://developer.tuya.com/en/miniapp/common/desc/
+- Tech Stack Overview: https://developer.tuya.com/en/miniapp/common/desc/tech-stack/
+- Design Guidelines: https://developer.tuya.com/en/miniapp/common/desc/design/
+- Customization: https://developer.tuya.com/en/miniapp/customization/
+
+### Native Development
+
+- Native Dev Guides: https://developer.tuya.com/en/miniapp/develop/miniapp/guide/
+- Native API Reference: https://developer.tuya.com/en/miniapp/develop/miniapp/api/
+- Native Components: https://developer.tuya.com/en/miniapp/develop/miniapp/component/
+- Native Framework: https://developer.tuya.com/en/miniapp/develop/miniapp/framework/
+
+### Ray Framework
+
+- Ray Dev Guides: https://developer.tuya.com/en/miniapp/develop/ray/guide/
+- Ray API Reference: https://developer.tuya.com/en/miniapp/develop/ray/api/
+- Ray Components: https://developer.tuya.com/en/miniapp/develop/ray/component/
+- Ray Framework: https://developer.tuya.com/en/miniapp/develop/ray/framework/
+- Ray Changelog: https://developer.tuya.com/en/miniapp/log/rayChangelog/
+
+### Solutions
+
+- AI Solutions: https://developer.tuya.com/en/miniapp/solution-ai/
+- Panel Solutions: https://developer.tuya.com/en/miniapp/solution-panel/
+- Software Solutions: https://developer.tuya.com/en/miniapp/solution-software/
+
+### DevTools
+
+- Mini App DevTools: https://developer.tuya.com/en/miniapp/devtools
+- Mini App Code Labs: https://developer.tuya.com/en/miniapp-codelabs
+
+## Mini App Development — CN
+
+- Mini App Home (CN): https://developer.tuya.com/cn/miniapp
+- Product Introduction (CN): https://developer.tuya.com/cn/miniapp/common/desc/
+- Customization (CN): https://developer.tuya.com/cn/miniapp/customization/
+- DevTools (CN): https://developer.tuya.com/cn/miniapp/devtools/
+- AI Solutions (CN): https://developer.tuya.com/cn/miniapp/solution-ai/
+- Panel Solutions (CN): https://developer.tuya.com/cn/miniapp/solution-panel/
+- Software Solutions (CN): https://developer.tuya.com/cn/miniapp/solution-software/
+- Ray Changelog (CN): https://developer.tuya.com/cn/miniapp/log/rayChangelog/
+
+## Material Libraries
+
+### SmartUI
+
+- SmartUI Library: https://developer.tuya.com/material/smartui/
+- Getting Started: https://developer.tuya.com/material/smartui/help-getting-started.md
+- FAQ: https://developer.tuya.com/material/smartui/faq.md
+- Theme: https://developer.tuya.com/material/smartui/theme.md
+- Changelog: https://developer.tuya.com/material/smartui/help-changelog.md
+- CN Guide: https://developer.tuya.com/material/cn/smartui/help-getting-started.md
+
+### Ray Component Library
+
+- Ray Components: https://developer.tuya.com/material/library_oHEKLjj0/component/
+- CN Components: https://developer.tuya.com/material/cn/library_oHEKLjj0/component/
+
+## Certification
+
+- Device Certification: https://developer.tuya.com/en/certification
+
+## Programs
+
+- Early Access Program: https://developer.tuya.com/en/early-access-program
+- Demo & Tutorials: https://developer.tuya.com/en/demo/tutorials
+
+## Topics
+
+- IoT Development Platform
+- IoT Cloud Development
+- IoT App Development
+- IoT Device Development
+- TuyaOS
+- MCU Development
+- Zigbee Gateway
+- Bluetooth Gateway
+- Smart Home App SDK
+- OEM App Development
+- Mini App Development
+- Mini Program Development
+- Ray Framework
+- SmartUI Components
+- Panel Development
+- Home Assistant Integration
+- Google Home Integration
+- Apple HomeKit Integration
+- Matter Protocol
+- IoT Certification
+- Cloud API
+- Device Management
+- Firmware Development
+- Smart Life App
+- Tuya Developer
+- IoT SDK
+- Cube Private Cloud
+- IoT Data Analytics
+- Mini App API
+- Ray API
+- SmartUI
+- AIoT Mini Program
+- IoT Panel Development
+- Embedded Development

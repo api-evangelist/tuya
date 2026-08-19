@@ -1,0 +1,249 @@
+{
+  "item": [
+    {
+      "id": "58196d5f-c0ae-45bb-863e-dd638422c529",
+      "name": "Sub Devices",
+      "description": {
+        "content": "Manage gateway sub-devices",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e7adc92b-067a-46a1-ae4a-dec2191265b6",
+          "name": "List Sub Devices",
+          "request": {
+            "name": "List Sub Devices",
+            "description": {
+              "content": "Retrieve a list of sub-devices connected through a gateway device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.0",
+                "devices",
+                ":device_id",
+                "sub-devices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "device_id",
+                  "description": "(Required) Unique device identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f33a6793-cf9b-4d5d-b8b3-387160ce6453",
+              "name": "List of sub-devices",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.0",
+                    "devices",
+                    ":device_id",
+                    "sub-devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "device_id",
+                      "description": "(Required) Unique device identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "client_id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"devices\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"uid\": \"string\",\n        \"local_key\": \"string\",\n        \"category\": \"string\",\n        \"product_id\": \"string\",\n        \"product_name\": \"string\",\n        \"sub\": true,\n        \"uuid\": \"string\",\n        \"owner_id\": \"string\",\n        \"online\": true,\n        \"status\": [\n          {\n            \"code\": \"string\",\n            \"value\": {}\n          },\n          {\n            \"code\": \"string\",\n            \"value\": {}\n          }\n        ],\n        \"active_time\": 1760,\n        \"create_time\": 6017,\n        \"update_time\": 6869,\n        \"time_zone\": \"string\",\n        \"ip\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"uid\": \"string\",\n        \"local_key\": \"string\",\n        \"category\": \"string\",\n        \"product_id\": \"string\",\n        \"product_name\": \"string\",\n        \"sub\": false,\n        \"uuid\": \"string\",\n        \"owner_id\": \"string\",\n        \"online\": true,\n        \"status\": [\n          {\n            \"code\": \"string\",\n            \"value\": {}\n          },\n          {\n            \"code\": \"string\",\n            \"value\": {}\n          }\n        ],\n        \"active_time\": 4769,\n        \"create_time\": 2651,\n        \"update_time\": 8291,\n        \"time_zone\": \"string\",\n        \"ip\": \"string\"\n      }\n    ],\n    \"last_row_key\": \"string\",\n    \"has_more\": true\n  },\n  \"success\": false,\n  \"t\": 546\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d9017fe-7ae1-45e6-8b55-ca198fbe9396",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.0",
+                    "devices",
+                    ":device_id",
+                    "sub-devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "device_id",
+                      "description": "(Required) Unique device identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "client_id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "369b170a-0044-4d9c-bdc2-d2fe10c4303e",
+              "name": "Gateway device not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.0",
+                    "devices",
+                    ":device_id",
+                    "sub-devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "device_id",
+                      "description": "(Required) Unique device identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "client_id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://openapi.tuyaus.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "client_id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "75ee17a9-b9f0-4ab2-bf19-b0c3e742e50b",
+    "name": "Tuya Device Management Device Control Sub Devices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tuya Device Management API provides endpoints for querying, controlling, and managing IoT devices registered to a Tuya cloud project. Capabilities include device information retrieval, device control, factory reset, device renaming, sub-device listing, operation log queries, and user-device association management.\n\nContact Support:\n Name: Tuya Developer Support\n Email: developer@tuya.com",
+      "type": "text/plain"
+    }
+  }
+}

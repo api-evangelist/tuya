@@ -1,0 +1,174 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tuya Device Management Device Control Devices API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "client_id",
+      "value": "{{client_id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Devices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Device Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.tuyaus.com/v1.0/devices/:device_id",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific device including its attributes, status, online state, and product information."
+        },
+        {
+          "info": {
+            "name": "Update Device Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://openapi.tuyaus.com/v1.0/devices/:device_id",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify the friendly name of a specified device."
+        },
+        {
+          "info": {
+            "name": "Remove Device",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://openapi.tuyaus.com/v1.0/devices/:device_id",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ]
+          },
+          "docs": "Remove a device from the cloud account and deregister it."
+        },
+        {
+          "info": {
+            "name": "List Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.tuyaus.com/v1.0/devices",
+            "params": [
+              {
+                "name": "device_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of device IDs to query"
+              },
+              {
+                "name": "schema",
+                "value": "",
+                "type": "query",
+                "description": "Include device schema information"
+              },
+              {
+                "name": "last_row_key",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor key"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (max 100)"
+              }
+            ]
+          },
+          "docs": "Query devices associated with a cloud project by application, product, or a set of device IDs."
+        },
+        {
+          "info": {
+            "name": "List User Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.tuyaus.com/v1.0/users/:uid/devices",
+            "params": [
+              {
+                "name": "uid",
+                "value": "",
+                "type": "path",
+                "description": "Unique user identifier"
+              },
+              {
+                "name": "last_row_key",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor key"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Retrieve all devices associated with a specific user account."
+        },
+        {
+          "info": {
+            "name": "Get Device Factory Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.tuyaus.com/v1.0/devices/factory-infos",
+            "params": [
+              {
+                "name": "device_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of device IDs"
+              }
+            ]
+          },
+          "docs": "Retrieve manufacturing and factory information for one or more devices."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
