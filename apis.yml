@@ -8,6 +8,18 @@ description: >-
   data centers and handles over 100 million concurrent requests.
 kind: contract
 access: 3rd-Party
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
