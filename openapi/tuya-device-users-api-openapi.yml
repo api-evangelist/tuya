@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Tuya Device Management Device Control Device Users API
+  title: Tuya Device Management Device Users API
   description: The Tuya Device Management API provides endpoints for querying, controlling, and managing IoT devices registered to a Tuya cloud project. Capabilities include device information retrieval, device control, factory reset, device renaming, sub-device listing, operation log queries, and user-device association management.
   version: '1.0'
   contact:

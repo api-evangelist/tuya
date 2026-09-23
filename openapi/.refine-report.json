@@ -1,11 +1,7 @@
 {
   "provider": "tuya",
   "sources": [
-    "tuya-device-control-api-openapi.yml",
-    "tuya-device-logs-api-openapi.yml",
-    "tuya-device-users-api-openapi.yml",
-    "tuya-devices-api-openapi.yml",
-    "tuya-sub-devices-api-openapi.yml"
+    "_original/tuya-device-management-openapi.yml"
   ],
   "outputs": [
     "tuya-device-control-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "tuya-device-management-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "tuya-device-control-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tuya-device-logs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tuya-device-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tuya-devices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tuya-sub-devices-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
