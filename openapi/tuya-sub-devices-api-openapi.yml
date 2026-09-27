@@ -43,14 +43,6 @@ paths:
           description: Gateway device not found
 components:
   schemas:
-    DataPoint:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Data point code identifier
-        value:
-          description: Current value of the data point
     DeviceListResponse:
       type: object
       properties:
@@ -72,6 +64,14 @@ components:
         t:
           type: integer
           format: int64
+    DataPoint:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Data point code identifier
+        value:
+          description: Current value of the data point
     Device:
       type: object
       properties:

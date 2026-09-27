@@ -105,6 +105,18 @@ paths:
           description: Device not found
 components:
   schemas:
+    DeviceStatusResponse:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataPoint'
+        success:
+          type: boolean
+        t:
+          type: integer
+          format: int64
     SuccessResponse:
       type: object
       properties:
@@ -118,18 +130,6 @@ components:
           type: integer
           format: int64
           description: Response timestamp in milliseconds
-    DeviceStatusResponse:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataPoint'
-        success:
-          type: boolean
-        t:
-          type: integer
-          format: int64
     DataPoint:
       type: object
       properties:

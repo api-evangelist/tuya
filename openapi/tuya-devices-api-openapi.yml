@@ -194,19 +194,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    SuccessResponse:
-      type: object
-      properties:
-        result:
-          type: boolean
-          description: Whether the operation succeeded
-        success:
-          type: boolean
-          description: Request success flag
-        t:
-          type: integer
-          format: int64
-          description: Response timestamp in milliseconds
     DeviceListResponse:
       type: object
       properties:
@@ -223,24 +210,6 @@ components:
             has_more:
               type: boolean
               description: Whether more results are available
-        success:
-          type: boolean
-        t:
-          type: integer
-          format: int64
-    DataPoint:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Data point code identifier
-        value:
-          description: Current value of the data point
-    DeviceResponse:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/Device'
         success:
           type: boolean
         t:
@@ -266,6 +235,16 @@ components:
               mac:
                 type: string
                 description: MAC address
+        success:
+          type: boolean
+        t:
+          type: integer
+          format: int64
+    DeviceResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Device'
         success:
           type: boolean
         t:
@@ -330,6 +309,27 @@ components:
         ip:
           type: string
           description: Device IP address
+    DataPoint:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Data point code identifier
+        value:
+          description: Current value of the data point
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+          description: Whether the operation succeeded
+        success:
+          type: boolean
+          description: Request success flag
+        t:
+          type: integer
+          format: int64
+          description: Response timestamp in milliseconds
   parameters:
     DeviceId:
       name: device_id
