@@ -82,6 +82,22 @@ paths:
           description: Device not found
 components:
   schemas:
+    DeviceLog:
+      type: object
+      properties:
+        event_time:
+          type: integer
+          format: int64
+          description: Event timestamp in milliseconds
+        code:
+          type: string
+          description: Data point code that changed
+        value:
+          type: string
+          description: New value after the change
+        event_id:
+          type: string
+          description: Unique event identifier
     DeviceLogsResponse:
       type: object
       properties:
@@ -101,22 +117,6 @@ components:
         t:
           type: integer
           format: int64
-    DeviceLog:
-      type: object
-      properties:
-        event_time:
-          type: integer
-          format: int64
-          description: Event timestamp in milliseconds
-        code:
-          type: string
-          description: Data point code that changed
-        value:
-          type: string
-          description: New value after the change
-        event_id:
-          type: string
-          description: Unique event identifier
   parameters:
     DeviceId:
       name: device_id

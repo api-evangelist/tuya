@@ -42,36 +42,15 @@ paths:
         '404':
           description: Gateway device not found
 components:
+  parameters:
+    DeviceId:
+      name: device_id
+      in: path
+      required: true
+      description: Unique device identifier
+      schema:
+        type: string
   schemas:
-    DeviceListResponse:
-      type: object
-      properties:
-        result:
-          type: object
-          properties:
-            devices:
-              type: array
-              items:
-                $ref: '#/components/schemas/Device'
-            last_row_key:
-              type: string
-              description: Pagination cursor for next page
-            has_more:
-              type: boolean
-              description: Whether more results are available
-        success:
-          type: boolean
-        t:
-          type: integer
-          format: int64
-    DataPoint:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Data point code identifier
-        value:
-          description: Current value of the data point
     Device:
       type: object
       properties:
@@ -131,14 +110,35 @@ components:
         ip:
           type: string
           description: Device IP address
-  parameters:
-    DeviceId:
-      name: device_id
-      in: path
-      required: true
-      description: Unique device identifier
-      schema:
-        type: string
+    DataPoint:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Data point code identifier
+        value:
+          description: Current value of the data point
+    DeviceListResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            devices:
+              type: array
+              items:
+                $ref: '#/components/schemas/Device'
+            last_row_key:
+              type: string
+              description: Pagination cursor for next page
+            has_more:
+              type: boolean
+              description: Whether more results are available
+        success:
+          type: boolean
+        t:
+          type: integer
+          format: int64
   securitySchemes:
     tuyaApiKey:
       type: apiKey

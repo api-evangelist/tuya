@@ -194,52 +194,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    DeviceListResponse:
-      type: object
-      properties:
-        result:
-          type: object
-          properties:
-            devices:
-              type: array
-              items:
-                $ref: '#/components/schemas/Device'
-            last_row_key:
-              type: string
-              description: Pagination cursor for next page
-            has_more:
-              type: boolean
-              description: Whether more results are available
-        success:
-          type: boolean
-        t:
-          type: integer
-          format: int64
-    FactoryInfoResponse:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Device ID
-              uuid:
-                type: string
-                description: Device UUID
-              sn:
-                type: string
-                description: Serial number
-              mac:
-                type: string
-                description: MAC address
-        success:
-          type: boolean
-        t:
-          type: integer
-          format: int64
     DeviceResponse:
       type: object
       properties:
@@ -309,6 +263,52 @@ components:
         ip:
           type: string
           description: Device IP address
+    DeviceListResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            devices:
+              type: array
+              items:
+                $ref: '#/components/schemas/Device'
+            last_row_key:
+              type: string
+              description: Pagination cursor for next page
+            has_more:
+              type: boolean
+              description: Whether more results are available
+        success:
+          type: boolean
+        t:
+          type: integer
+          format: int64
+    FactoryInfoResponse:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Device ID
+              uuid:
+                type: string
+                description: Device UUID
+              sn:
+                type: string
+                description: Serial number
+              mac:
+                type: string
+                description: MAC address
+        success:
+          type: boolean
+        t:
+          type: integer
+          format: int64
     DataPoint:
       type: object
       properties:
