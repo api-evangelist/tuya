@@ -42,14 +42,6 @@ paths:
         '404':
           description: Gateway device not found
 components:
-  parameters:
-    DeviceId:
-      name: device_id
-      in: path
-      required: true
-      description: Unique device identifier
-      schema:
-        type: string
   schemas:
     Device:
       type: object
@@ -110,14 +102,6 @@ components:
         ip:
           type: string
           description: Device IP address
-    DataPoint:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Data point code identifier
-        value:
-          description: Current value of the data point
     DeviceListResponse:
       type: object
       properties:
@@ -139,6 +123,22 @@ components:
         t:
           type: integer
           format: int64
+    DataPoint:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Data point code identifier
+        value:
+          description: Current value of the data point
+  parameters:
+    DeviceId:
+      name: device_id
+      in: path
+      required: true
+      description: Unique device identifier
+      schema:
+        type: string
   securitySchemes:
     tuyaApiKey:
       type: apiKey

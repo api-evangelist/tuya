@@ -140,15 +140,20 @@ paths:
         '401':
           description: Unauthorized
 components:
-  parameters:
-    DeviceId:
-      name: device_id
-      in: path
-      required: true
-      description: Unique device identifier
-      schema:
-        type: string
   schemas:
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+          description: Whether the operation succeeded
+        success:
+          type: boolean
+          description: Request success flag
+        t:
+          type: integer
+          format: int64
+          description: Response timestamp in milliseconds
     UserResponse:
       type: object
       properties:
@@ -169,19 +174,14 @@ components:
         t:
           type: integer
           format: int64
-    SuccessResponse:
-      type: object
-      properties:
-        result:
-          type: boolean
-          description: Whether the operation succeeded
-        success:
-          type: boolean
-          description: Request success flag
-        t:
-          type: integer
-          format: int64
-          description: Response timestamp in milliseconds
+  parameters:
+    DeviceId:
+      name: device_id
+      in: path
+      required: true
+      description: Unique device identifier
+      schema:
+        type: string
   securitySchemes:
     tuyaApiKey:
       type: apiKey

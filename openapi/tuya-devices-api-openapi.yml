@@ -194,6 +194,27 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    DeviceListResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            devices:
+              type: array
+              items:
+                $ref: '#/components/schemas/Device'
+            last_row_key:
+              type: string
+              description: Pagination cursor for next page
+            has_more:
+              type: boolean
+              description: Whether more results are available
+        success:
+          type: boolean
+        t:
+          type: integer
+          format: int64
     DeviceResponse:
       type: object
       properties:
@@ -204,6 +225,19 @@ components:
         t:
           type: integer
           format: int64
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+          description: Whether the operation succeeded
+        success:
+          type: boolean
+          description: Request success flag
+        t:
+          type: integer
+          format: int64
+          description: Response timestamp in milliseconds
     Device:
       type: object
       properties:
@@ -263,27 +297,14 @@ components:
         ip:
           type: string
           description: Device IP address
-    DeviceListResponse:
+    DataPoint:
       type: object
       properties:
-        result:
-          type: object
-          properties:
-            devices:
-              type: array
-              items:
-                $ref: '#/components/schemas/Device'
-            last_row_key:
-              type: string
-              description: Pagination cursor for next page
-            has_more:
-              type: boolean
-              description: Whether more results are available
-        success:
-          type: boolean
-        t:
-          type: integer
-          format: int64
+        code:
+          type: string
+          description: Data point code identifier
+        value:
+          description: Current value of the data point
     FactoryInfoResponse:
       type: object
       properties:
@@ -309,27 +330,6 @@ components:
         t:
           type: integer
           format: int64
-    DataPoint:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Data point code identifier
-        value:
-          description: Current value of the data point
-    SuccessResponse:
-      type: object
-      properties:
-        result:
-          type: boolean
-          description: Whether the operation succeeded
-        success:
-          type: boolean
-          description: Request success flag
-        t:
-          type: integer
-          format: int64
-          description: Response timestamp in milliseconds
   parameters:
     DeviceId:
       name: device_id
