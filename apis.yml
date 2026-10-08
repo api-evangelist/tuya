@@ -165,6 +165,12 @@ apis:
   - type: OpenAPI
     url: openapi/tuya-sub-devices-api-openapi.yml
 common:
+  - type: Plans
+    url: plans/tuya-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/tuya-rate-limits.yml
+  - type: FinOps
+    url: finops/tuya-finops.yml
   - type: AgenticAccess
     url: agentic-access/tuya-agentic-access.yml
   - type: DomainSecurity
