@@ -194,27 +194,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    DeviceListResponse:
-      type: object
-      properties:
-        result:
-          type: object
-          properties:
-            devices:
-              type: array
-              items:
-                $ref: '#/components/schemas/Device'
-            last_row_key:
-              type: string
-              description: Pagination cursor for next page
-            has_more:
-              type: boolean
-              description: Whether more results are available
-        success:
-          type: boolean
-        t:
-          type: integer
-          format: int64
     DeviceResponse:
       type: object
       properties:
@@ -238,6 +217,27 @@ components:
           type: integer
           format: int64
           description: Response timestamp in milliseconds
+    DeviceListResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            devices:
+              type: array
+              items:
+                $ref: '#/components/schemas/Device'
+            last_row_key:
+              type: string
+              description: Pagination cursor for next page
+            has_more:
+              type: boolean
+              description: Whether more results are available
+        success:
+          type: boolean
+        t:
+          type: integer
+          format: int64
     Device:
       type: object
       properties:

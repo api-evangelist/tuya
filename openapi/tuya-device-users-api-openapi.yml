@@ -140,6 +140,14 @@ paths:
         '401':
           description: Unauthorized
 components:
+  parameters:
+    DeviceId:
+      name: device_id
+      in: path
+      required: true
+      description: Unique device identifier
+      schema:
+        type: string
   schemas:
     SuccessResponse:
       type: object
@@ -174,14 +182,6 @@ components:
         t:
           type: integer
           format: int64
-  parameters:
-    DeviceId:
-      name: device_id
-      in: path
-      required: true
-      description: Unique device identifier
-      schema:
-        type: string
   securitySchemes:
     tuyaApiKey:
       type: apiKey

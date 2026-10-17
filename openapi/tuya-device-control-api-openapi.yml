@@ -117,6 +117,14 @@ components:
         t:
           type: integer
           format: int64
+    DataPoint:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Data point code identifier
+        value:
+          description: Current value of the data point
     SuccessResponse:
       type: object
       properties:
@@ -130,14 +138,6 @@ components:
           type: integer
           format: int64
           description: Response timestamp in milliseconds
-    DataPoint:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Data point code identifier
-        value:
-          description: Current value of the data point
   parameters:
     DeviceId:
       name: device_id
