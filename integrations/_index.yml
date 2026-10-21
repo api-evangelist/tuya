@@ -88,3 +88,78 @@
     detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
+- slug: tuya-csa-certified-products-matter-apple-home-compatible
+  label: CSA certified products (Matter, Apple Home compatible)
+  partner_name: CSA certified products (Matter, Apple Home compatible)
+  category: Matter device certification
+  type: register
+  channel: standard-directory
+  evidence: https://csa-iot.org/csa_product/power-statistics-socket-41/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: CSA certified products (csa-iot.org/csa-iot_products; category Matter)
+    standard: Matter
+    spec_file: null
+    role: matter-certified-product
+    registered_name: Tuya Inc.
+    register_id: https://csa-iot.org/csa_product/power-statistics-socket-41/
+    matched_domain: null
+    matched_by: register-name
+    register_name_note: register-name 'tuya' = tuya; wikidata P856 tuya.com agrees or unheld
+    certified_products:
+    - product: color-temperature-light
+      lapsed: false
+      newest_certification: '2026-10-20'
+    - product: contact-sensor
+      lapsed: false
+      newest_certification: '2026-10-17'
+    - product: dimmable-light
+      lapsed: false
+      newest_certification: '2026-10-01'
+    - product: door-lock
+      lapsed: false
+      newest_certification: '2026-10-13'
+    - product: extended-color-light
+      lapsed: false
+      newest_certification: '2026-10-21'
+    - product: fan
+      lapsed: false
+      newest_certification: '2026-10-11'
+    - product: mounted-on-off-control
+      lapsed: false
+      newest_certification: '2026-10-19'
+    - product: occupancy-sensor
+      lapsed: false
+      newest_certification: '2026-10-17'
+    - product: on-off-light
+      lapsed: false
+      newest_certification: '2026-10-03'
+    - product: on-off-plug-in-unit
+      lapsed: false
+      newest_certification: '2026-10-21'
+    - product: thermostat
+      lapsed: false
+      newest_certification: '2026-10-11'
+    - product: window-covering
+      lapsed: false
+      newest_certification: '2026-10-14'
+    products_sample:
+    - 2 Outlets Wi-Fi Plug
+    - Ceiling fans light
+    - Ceiling fans light driver
+    - Door Window Sensor
+    - Motion Sensor
+    - Outdoor Plug
+    - Power Metering Switch Module
+    - Power Statistics Socket
+    signal_note: certified_products = one entry per Matter device type with a certified product (structural types
+      such as root node / bridge excluded); product counts are context. CSA marks no certification as withdrawn
+      on this list, so lapsed is false
+    detected_by: sweep-apple-mfi-ecosystem.py
+    detected: '2026-10-21'
+    identity_source: register-name
+    identity_note: register gave only the name; exact normalised match to the repo's apis.yml name, one repo, Wikidata
+      P856 not contradicting (Kin 2026-10-20 decision 2)
+  status: not-a-workflow
+  arazzo: null
