@@ -163,3 +163,37 @@
       P856 not contradicting (Kin 2026-10-20 decision 2)
   status: not-a-workflow
   arazzo: null
+- slug: tuya-home-assistant-community-store-hacs
+  label: Home Assistant Community Store (HACS)
+  partner_name: Home Assistant Community Store (HACS)
+  category: home-automation
+  type: marketplace
+  marketplace: HACS default repository
+  channel: provider-built
+  evidence: https://github.com/tuya/tuya_cloud_ha_bridge
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: HACS default integration list (github.com/hacs/default, pinned commit) + HA analytics custom_integrations.json
+    standard: Home Assistant custom integration (HACS)
+    spec_file: null
+    role: hacs-first-party-integration
+    register_id: https://raw.githubusercontent.com/hacs/default/dee7a0eddd9644e8373be114cdb7818443014ba0/integration
+    pinned_commit: dee7a0eddd9644e8373be114cdb7818443014ba0
+    matched_by: domain
+    match_note: org tuya (Tuya) site/doc tuya.com
+    integrations:
+    - domain: tuya_cloud_ha_bridge
+      name: Tuya Cloud HA Bridge
+      repo: https://github.com/tuya/tuya_cloud_ha_bridge
+      builder: tuya
+      installs: 304
+      installs_band: 100-1k
+    max_installs: 304
+    installs_source: https://analytics.home-assistant.io/custom_integrations.json
+    signal_note: installs = HA's opt-in analytics count for the integration's domain on the read date (a floor,
+      opt-in only); per-integration context, never summed or counted as edges
+    detected_by: sweep-home-assistant-hacs-custom.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
