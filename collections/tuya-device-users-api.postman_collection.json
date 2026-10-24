@@ -1,869 +1,820 @@
 {
+  "info": {
+    "_postman_id": "03b986c0-6af5-40c3-b4b7-90b92707f12c",
+    "name": "Tuya Device Management Device Users API",
+    "description": "The Tuya Device Management API provides endpoints for querying, controlling, and managing IoT devices registered to a Tuya cloud project. Capabilities include device information retrieval, device control, factory reset, device renaming, sub-device listing, operation log queries, and user-device association management.\n\nContact Support:\n Name: Tuya Developer Support\n Email: developer@tuya.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:18:15.000Z",
+    "updatedAt": "2026-10-22T02:18:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-03b986c0-6af5-40c3-b4b7-90b92707f12c"
+  },
   "item": [
     {
-      "id": "32900c70-74c7-4110-b8d5-86db092918fe",
-      "name": "Device Users",
-      "description": {
-        "content": "Manage user associations with devices",
-        "type": "text/plain"
-      },
+      "name": "v1.0",
       "item": [
         {
-          "id": "2b327bd1-a7fa-4aeb-8076-d7c146bdd132",
-          "name": "Add Device User",
-          "request": {
-            "name": "Add Device User",
-            "description": {
-              "content": "Associate a user with a device to grant access permissions.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1.0",
-                "devices",
-                ":device_id",
-                "users"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "device_id",
-                  "description": "(Required) Unique device identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"uid\": \"<string>\",\n  \"user_type\": \"<integer>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "devices",
+          "item": [
             {
-              "id": "7b338d8d-66fd-41fd-a038-53714dbf9567",
-              "name": "User added to device",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "{device_id}",
+              "item": [
+                {
+                  "name": "users",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
+                      "name": "{user_id}",
+                      "item": [
+                        {
+                          "name": "Get Device User",
+                          "id": "cc3590b6-2c13-4e10-bc7c-cac4252fc78a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1.0/devices/:device_id/users/:user_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1.0",
+                                "devices",
+                                ":device_id",
+                                "users",
+                                ":user_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "5df09389-80b6-4ad6-946f-a5fee123cffb",
+                                  "key": "device_id",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique device identifier"
+                                },
+                                {
+                                  "id": "e136196b-2fb3-432f-88dc-5151fdcbd8a6",
+                                  "key": "user_id",
+                                  "value": "<string>",
+                                  "description": "(Required) User ID"
+                                }
+                              ]
+                            },
+                            "description": "Retrieve information about a user associated with a device."
+                          },
+                          "response": [
+                            {
+                              "id": "17f8c0ca-414d-48d5-b76d-5e8738d71e92",
+                              "name": "Device user details",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "client_id",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1.0/devices/:device_id/users/:user_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1.0",
+                                    "devices",
+                                    ":device_id",
+                                    "users",
+                                    ":user_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "device_id"
+                                    },
+                                    {
+                                      "key": "user_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"result\": {\n    \"uid\": \"<string>\",\n    \"nick_name\": \"<string>\",\n    \"user_type\": \"<integer>\"\n  },\n  \"success\": \"<boolean>\",\n  \"t\": \"<long>\"\n}",
+                              "createdAt": "2026-10-22T02:18:16.000Z",
+                              "updatedAt": "2026-10-22T02:18:16.000Z",
+                              "uid": "35240-17f8c0ca-414d-48d5-b76d-5e8738d71e92"
+                            },
+                            {
+                              "id": "40492678-2cd3-43a9-948f-6ef250af7142",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "client_id",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1.0/devices/:device_id/users/:user_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1.0",
+                                    "devices",
+                                    ":device_id",
+                                    "users",
+                                    ":user_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "device_id"
+                                    },
+                                    {
+                                      "key": "user_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T02:18:16.000Z",
+                              "updatedAt": "2026-10-22T02:18:16.000Z",
+                              "uid": "35240-40492678-2cd3-43a9-948f-6ef250af7142"
+                            },
+                            {
+                              "id": "b11775fc-e3cb-4102-9366-6665b36241fd",
+                              "name": "User or device not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "client_id",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1.0/devices/:device_id/users/:user_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1.0",
+                                    "devices",
+                                    ":device_id",
+                                    "users",
+                                    ":user_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "device_id"
+                                    },
+                                    {
+                                      "key": "user_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T02:18:16.000Z",
+                              "updatedAt": "2026-10-22T02:18:16.000Z",
+                              "uid": "35240-b11775fc-e3cb-4102-9366-6665b36241fd"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:18:16.000Z",
+                          "updatedAt": "2026-10-22T02:18:16.000Z",
+                          "uid": "35240-cc3590b6-2c13-4e10-bc7c-cac4252fc78a"
+                        },
+                        {
+                          "name": "Update Device User",
+                          "id": "e59420f8-56ab-4c4d-8493-4d4bcadf462b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user_type\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1.0/devices/:device_id/users/:user_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1.0",
+                                "devices",
+                                ":device_id",
+                                "users",
+                                ":user_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9673e716-5da4-4e02-96fd-5071845bb883",
+                                  "key": "device_id",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique device identifier"
+                                },
+                                {
+                                  "id": "d1edbca7-8fe3-4409-937b-3bce7e00fc3d",
+                                  "key": "user_id",
+                                  "value": "<string>",
+                                  "description": "(Required) User ID"
+                                }
+                              ]
+                            },
+                            "description": "Modify a user's role or permissions for a device."
+                          },
+                          "response": [
+                            {
+                              "id": "3d7b3937-e749-4c6d-983e-ee858d607d0d",
+                              "name": "User updated",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "client_id",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"user_type\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1.0/devices/:device_id/users/:user_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1.0",
+                                    "devices",
+                                    ":device_id",
+                                    "users",
+                                    ":user_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "device_id"
+                                    },
+                                    {
+                                      "key": "user_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"result\": \"<boolean>\",\n  \"success\": \"<boolean>\",\n  \"t\": \"<long>\"\n}",
+                              "createdAt": "2026-10-22T02:18:16.000Z",
+                              "updatedAt": "2026-10-22T02:18:16.000Z",
+                              "uid": "35240-3d7b3937-e749-4c6d-983e-ee858d607d0d"
+                            },
+                            {
+                              "id": "b62e5b95-7240-4a13-88db-95a8459281cd",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "client_id",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"user_type\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1.0/devices/:device_id/users/:user_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1.0",
+                                    "devices",
+                                    ":device_id",
+                                    "users",
+                                    ":user_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "device_id"
+                                    },
+                                    {
+                                      "key": "user_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T02:18:16.000Z",
+                              "updatedAt": "2026-10-22T02:18:16.000Z",
+                              "uid": "35240-b62e5b95-7240-4a13-88db-95a8459281cd"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:18:16.000Z",
+                          "updatedAt": "2026-10-22T02:18:16.000Z",
+                          "uid": "35240-e59420f8-56ab-4c4d-8493-4d4bcadf462b"
+                        },
+                        {
+                          "name": "Remove Device User",
+                          "id": "d3aba3a4-3dd3-481f-8b9d-3be15ebc9a8b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1.0/devices/:device_id/users/:user_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1.0",
+                                "devices",
+                                ":device_id",
+                                "users",
+                                ":user_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "822c581f-dff0-48a0-b2ed-a701a7a57377",
+                                  "key": "device_id",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique device identifier"
+                                },
+                                {
+                                  "id": "302aea92-da09-4109-a323-ffe1d90e4122",
+                                  "key": "user_id",
+                                  "value": "<string>",
+                                  "description": "(Required) User ID"
+                                }
+                              ]
+                            },
+                            "description": "Remove a user's association with a device."
+                          },
+                          "response": [
+                            {
+                              "id": "67a883bf-ccd4-4657-9d1b-f3e5ba37814d",
+                              "name": "User removed",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "client_id",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1.0/devices/:device_id/users/:user_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1.0",
+                                    "devices",
+                                    ":device_id",
+                                    "users",
+                                    ":user_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "device_id"
+                                    },
+                                    {
+                                      "key": "user_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"result\": \"<boolean>\",\n  \"success\": \"<boolean>\",\n  \"t\": \"<long>\"\n}",
+                              "createdAt": "2026-10-22T02:18:16.000Z",
+                              "updatedAt": "2026-10-22T02:18:16.000Z",
+                              "uid": "35240-67a883bf-ccd4-4657-9d1b-f3e5ba37814d"
+                            },
+                            {
+                              "id": "d54c7175-622a-44b6-b802-33dd497f55f0",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "client_id",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1.0/devices/:device_id/users/:user_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1.0",
+                                    "devices",
+                                    ":device_id",
+                                    "users",
+                                    ":user_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "device_id"
+                                    },
+                                    {
+                                      "key": "user_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T02:18:16.000Z",
+                              "updatedAt": "2026-10-22T02:18:16.000Z",
+                              "uid": "35240-d54c7175-622a-44b6-b802-33dd497f55f0"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:18:16.000Z",
+                          "updatedAt": "2026-10-22T02:18:16.000Z",
+                          "uid": "35240-d3aba3a4-3dd3-481f-8b9d-3be15ebc9a8b"
+                        }
+                      ],
+                      "id": "f8c4ac8c-3172-40c2-8741-c9670658819f",
+                      "createdAt": "2026-10-22T02:18:16.000Z",
+                      "updatedAt": "2026-10-22T02:18:16.000Z",
+                      "uid": "35240-f8c4ac8c-3172-40c2-8741-c9670658819f"
+                    },
+                    {
+                      "name": "Add Device User",
+                      "id": "c5d338f7-4f39-41a6-951f-1028a5fd49ba",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"uid\": \"<string>\",\n  \"user_type\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1.0/devices/:device_id/users",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1.0",
+                            "devices",
+                            ":device_id",
+                            "users"
+                          ],
+                          "variable": [
+                            {
+                              "id": "eed23bc6-5101-4e5d-b012-a9e7c26feb3a",
+                              "key": "device_id",
+                              "value": "<string>",
+                              "description": "(Required) Unique device identifier"
+                            }
+                          ]
+                        },
+                        "description": "Associate a user with a device to grant access permissions."
+                      },
+                      "response": [
+                        {
+                          "id": "0fc17eb1-0af6-4de4-9949-440dc0406b88",
+                          "name": "User added to device",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "client_id",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"uid\": \"<string>\",\n  \"user_type\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1.0/devices/:device_id/users",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1.0",
+                                "devices",
+                                ":device_id",
+                                "users"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "device_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": \"<boolean>\",\n  \"success\": \"<boolean>\",\n  \"t\": \"<long>\"\n}",
+                          "createdAt": "2026-10-22T02:18:16.000Z",
+                          "updatedAt": "2026-10-22T02:18:16.000Z",
+                          "uid": "35240-0fc17eb1-0af6-4de4-9949-440dc0406b88"
+                        },
+                        {
+                          "id": "f380dc7c-3751-4246-8e7e-28bdcb053c08",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "client_id",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"uid\": \"<string>\",\n  \"user_type\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1.0/devices/:device_id/users",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1.0",
+                                "devices",
+                                ":device_id",
+                                "users"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "device_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:18:16.000Z",
+                          "updatedAt": "2026-10-22T02:18:16.000Z",
+                          "uid": "35240-f380dc7c-3751-4246-8e7e-28bdcb053c08"
+                        },
+                        {
+                          "id": "184de2b2-750b-4f98-b52f-f58f815aca42",
+                          "name": "Device not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "client_id",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"uid\": \"<string>\",\n  \"user_type\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1.0/devices/:device_id/users",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1.0",
+                                "devices",
+                                ":device_id",
+                                "users"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "device_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:18:16.000Z",
+                          "updatedAt": "2026-10-22T02:18:16.000Z",
+                          "uid": "35240-184de2b2-750b-4f98-b52f-f58f815aca42"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:18:16.000Z",
+                      "updatedAt": "2026-10-22T02:18:16.000Z",
+                      "uid": "35240-c5d338f7-4f39-41a6-951f-1028a5fd49ba"
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"uid\": \"<string>\",\n  \"user_type\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ],
+                  "id": "556f5343-0d17-489d-a073-4dd53d63ea89",
+                  "createdAt": "2026-10-22T02:18:16.000Z",
+                  "updatedAt": "2026-10-22T02:18:16.000Z",
+                  "uid": "35240-556f5343-0d17-489d-a073-4dd53d63ea89"
                 }
               ],
-              "body": "{\n  \"result\": false,\n  \"success\": false,\n  \"t\": 5105\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "44cdbffe-2a28-492d-add9-f9bca2880bfc",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"uid\": \"<string>\",\n  \"user_type\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "26832ddc-4747-449d-b144-c42a2b4f639b",
-              "name": "Device not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"uid\": \"<string>\",\n  \"user_type\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f1a88858-9e8a-4bc3-9c7d-79bc36972696",
-          "name": "Get Device User",
-          "request": {
-            "name": "Get Device User",
-            "description": {
-              "content": "Retrieve information about a user associated with a device.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1.0",
-                "devices",
-                ":device_id",
-                "users",
-                ":user_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "device_id",
-                  "description": "(Required) Unique device identifier"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "user_id",
-                  "description": "(Required) User ID"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "6b149f82-1593-419f-bc73-452fff89a19e",
-              "name": "Device user details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "users",
-                    ":user_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "user_id",
-                      "description": "(Required) User ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"result\": {\n    \"uid\": \"string\",\n    \"nick_name\": \"string\",\n    \"user_type\": 3709\n  },\n  \"success\": true,\n  \"t\": 41\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "6e413b79-393a-4a95-b103-e42dab726246",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "users",
-                    ":user_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "user_id",
-                      "description": "(Required) User ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "dd3b2789-9a0c-42f6-89b4-b94c878d2924",
-              "name": "User or device not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "users",
-                    ":user_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "user_id",
-                      "description": "(Required) User ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e61cb8eb-d7ac-41c5-ab4d-07ce9a060c33",
-          "name": "Update Device User",
-          "request": {
-            "name": "Update Device User",
-            "description": {
-              "content": "Modify a user's role or permissions for a device.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1.0",
-                "devices",
-                ":device_id",
-                "users",
-                ":user_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "device_id",
-                  "description": "(Required) Unique device identifier"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "user_id",
-                  "description": "(Required) User ID"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"user_type\": \"<integer>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "92526efb-e623-4cea-b697-cc9df431fea7",
-              "name": "User updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "users",
-                    ":user_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "user_id",
-                      "description": "(Required) User ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"user_type\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"result\": false,\n  \"success\": false,\n  \"t\": 5105\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "85010335-983e-403b-be9c-587688828d6f",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "users",
-                    ":user_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "user_id",
-                      "description": "(Required) User ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"user_type\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "6d68b1c9-98f1-41d7-b3f3-5e9e8ad6a47b",
-          "name": "Remove Device User",
-          "request": {
-            "name": "Remove Device User",
-            "description": {
-              "content": "Remove a user's association with a device.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1.0",
-                "devices",
-                ":device_id",
-                "users",
-                ":user_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "device_id",
-                  "description": "(Required) Unique device identifier"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "user_id",
-                  "description": "(Required) User ID"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "d5a255ba-9cb4-423b-a8b3-cc2de981afe7",
-              "name": "User removed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "users",
-                    ":user_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "user_id",
-                      "description": "(Required) User ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"result\": false,\n  \"success\": false,\n  \"t\": 5105\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "16958efb-c0b8-4b7b-b800-beae7a794579",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "users",
-                    ":user_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "user_id",
-                      "description": "(Required) User ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "6cffac1a-2923-4b82-bc91-68a3289f1a9f",
+              "createdAt": "2026-10-22T02:18:16.000Z",
+              "updatedAt": "2026-10-22T02:18:16.000Z",
+              "uid": "35240-6cffac1a-2923-4b82-bc91-68a3289f1a9f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "edab49dd-b5e5-47c0-90af-2fcd023ea5bf",
+          "createdAt": "2026-10-22T02:18:16.000Z",
+          "updatedAt": "2026-10-22T02:18:16.000Z",
+          "uid": "35240-edab49dd-b5e5-47c0-90af-2fcd023ea5bf"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://openapi.tuyaus.com",
-      "key": "baseUrl"
+      "id": "60472ba5-0721-4fe1-b703-c7819e79b1be",
+      "createdAt": "2026-10-22T02:18:16.000Z",
+      "updatedAt": "2026-10-22T02:18:16.000Z",
+      "uid": "35240-60472ba5-0721-4fe1-b703-c7819e79b1be"
     }
   ],
   "auth": {
@@ -871,25 +822,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "client_id"
+        "value": "client_id",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "49b82c7b-e84b-405c-9086-e8cab842be5b",
-    "name": "Tuya Device Management Device Control Device Users API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Tuya Device Management API provides endpoints for querying, controlling, and managing IoT devices registered to a Tuya cloud project. Capabilities include device information retrieval, device control, factory reset, device renaming, sub-device listing, operation log queries, and user-device association management.\n\nContact Support:\n Name: Tuya Developer Support\n Email: developer@tuya.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://openapi.tuyaus.com"
     }
-  }
+  ]
 }

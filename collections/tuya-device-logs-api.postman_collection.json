@@ -1,335 +1,352 @@
 {
+  "info": {
+    "_postman_id": "02971219-fc67-4d3f-8e0b-6be36210c149",
+    "name": "Tuya Device Management Device Logs API",
+    "description": "The Tuya Device Management API provides endpoints for querying, controlling, and managing IoT devices registered to a Tuya cloud project. Capabilities include device information retrieval, device control, factory reset, device renaming, sub-device listing, operation log queries, and user-device association management.\n\nContact Support:\n Name: Tuya Developer Support\n Email: developer@tuya.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:18:09.000Z",
+    "updatedAt": "2026-10-22T02:18:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-02971219-fc67-4d3f-8e0b-6be36210c149"
+  },
   "item": [
     {
-      "id": "5d48c34d-9289-476c-889a-43b678b17319",
-      "name": "Device Logs",
-      "description": {
-        "content": "Query device operation and event logs",
-        "type": "text/plain"
-      },
+      "name": "v1.0",
       "item": [
         {
-          "id": "2c3dc901-536d-413a-b0a1-2143f6de87f3",
-          "name": "Get Device Operation Logs",
-          "request": {
-            "name": "Get Device Operation Logs",
-            "description": {
-              "content": "Query the operation logs of a specified device filtered by event type, code, and time range.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1.0",
-                "devices",
-                ":device_id",
-                "logs"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "type",
-                  "value": "<integer>",
-                  "description": "(Required) Log type (1=device, 7=tap-to-run automation)"
-                },
-                {
-                  "disabled": false,
-                  "key": "start_row_key",
-                  "value": "<string>",
-                  "description": "Pagination cursor"
-                },
-                {
-                  "disabled": false,
-                  "key": "start_time",
-                  "value": "<long>",
-                  "description": "Start timestamp in milliseconds"
-                },
-                {
-                  "disabled": false,
-                  "key": "end_time",
-                  "value": "<long>",
-                  "description": "End timestamp in milliseconds"
-                },
-                {
-                  "disabled": false,
-                  "key": "size",
-                  "value": "20",
-                  "description": "Number of records to return (max 50)"
-                },
-                {
-                  "disabled": false,
-                  "key": "codes",
-                  "value": "<string>",
-                  "description": "Comma-separated list of data point codes to filter by"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "device_id",
-                  "description": "(Required) Unique device identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "devices",
+          "item": [
             {
-              "id": "ea1be61b-b044-4f4b-8e16-64b7a6d85fb3",
-              "name": "Device operation logs",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "logs"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "type",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "start_row_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "start_time",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "end_time",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "size",
-                      "value": "20"
-                    },
-                    {
-                      "key": "codes",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{device_id}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "logs",
+                  "item": [
+                    {
+                      "name": "Get Device Operation Logs",
+                      "id": "f84b92ce-b731-4f50-8479-0d1a6eedf276",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1.0/devices/:device_id/logs?type=7&start_row_key=<string>&start_time=<long>&end_time=<long>&size=20&codes=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1.0",
+                            "devices",
+                            ":device_id",
+                            "logs"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Log type (1=device, 7=tap-to-run automation)",
+                              "key": "type",
+                              "value": "7"
+                            },
+                            {
+                              "description": "Pagination cursor",
+                              "key": "start_row_key",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Start timestamp in milliseconds",
+                              "key": "start_time",
+                              "value": "<long>"
+                            },
+                            {
+                              "description": "End timestamp in milliseconds",
+                              "key": "end_time",
+                              "value": "<long>"
+                            },
+                            {
+                              "description": "Number of records to return (max 50)",
+                              "key": "size",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Comma-separated list of data point codes to filter by",
+                              "key": "codes",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "363ffa21-6ecc-4050-9ce1-5024b444b7c2",
+                              "key": "device_id",
+                              "value": "<string>",
+                              "description": "(Required) Unique device identifier"
+                            }
+                          ]
+                        },
+                        "description": "Query the operation logs of a specified device filtered by event type, code, and time range."
+                      },
+                      "response": [
+                        {
+                          "id": "bc656d98-0bc4-42f4-be84-fc328ac23353",
+                          "name": "Device operation logs",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "client_id",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1.0/devices/:device_id/logs?type=7&start_row_key=<string>&start_time=<long>&end_time=<long>&size=20&codes=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1.0",
+                                "devices",
+                                ":device_id",
+                                "logs"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Log type (1=device, 7=tap-to-run automation)",
+                                  "key": "type",
+                                  "value": "7"
+                                },
+                                {
+                                  "description": "Pagination cursor",
+                                  "key": "start_row_key",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Start timestamp in milliseconds",
+                                  "key": "start_time",
+                                  "value": "<long>"
+                                },
+                                {
+                                  "description": "End timestamp in milliseconds",
+                                  "key": "end_time",
+                                  "value": "<long>"
+                                },
+                                {
+                                  "description": "Number of records to return (max 50)",
+                                  "key": "size",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Comma-separated list of data point codes to filter by",
+                                  "key": "codes",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "device_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": {\n    \"logs\": [\n      {\n        \"event_time\": \"<long>\",\n        \"code\": \"<string>\",\n        \"value\": \"<string>\",\n        \"event_id\": \"<string>\"\n      },\n      {\n        \"event_time\": \"<long>\",\n        \"code\": \"<string>\",\n        \"value\": \"<string>\",\n        \"event_id\": \"<string>\"\n      }\n    ],\n    \"current_row_key\": \"<string>\",\n    \"has_next\": \"<boolean>\"\n  },\n  \"success\": \"<boolean>\",\n  \"t\": \"<long>\"\n}",
+                          "createdAt": "2026-10-22T02:18:09.000Z",
+                          "updatedAt": "2026-10-22T02:18:09.000Z",
+                          "uid": "35240-bc656d98-0bc4-42f4-be84-fc328ac23353"
+                        },
+                        {
+                          "id": "991a4812-e70c-4ab8-b998-f57863f4f9e4",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "client_id",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1.0/devices/:device_id/logs?type=7&start_row_key=<string>&start_time=<long>&end_time=<long>&size=20&codes=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1.0",
+                                "devices",
+                                ":device_id",
+                                "logs"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Log type (1=device, 7=tap-to-run automation)",
+                                  "key": "type",
+                                  "value": "7"
+                                },
+                                {
+                                  "description": "Pagination cursor",
+                                  "key": "start_row_key",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Start timestamp in milliseconds",
+                                  "key": "start_time",
+                                  "value": "<long>"
+                                },
+                                {
+                                  "description": "End timestamp in milliseconds",
+                                  "key": "end_time",
+                                  "value": "<long>"
+                                },
+                                {
+                                  "description": "Number of records to return (max 50)",
+                                  "key": "size",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Comma-separated list of data point codes to filter by",
+                                  "key": "codes",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "device_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:18:09.000Z",
+                          "updatedAt": "2026-10-22T02:18:09.000Z",
+                          "uid": "35240-991a4812-e70c-4ab8-b998-f57863f4f9e4"
+                        },
+                        {
+                          "id": "ddf7ae38-87d9-4c54-b7ba-f18ed37099e7",
+                          "name": "Device not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "client_id",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1.0/devices/:device_id/logs?type=7&start_row_key=<string>&start_time=<long>&end_time=<long>&size=20&codes=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1.0",
+                                "devices",
+                                ":device_id",
+                                "logs"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Log type (1=device, 7=tap-to-run automation)",
+                                  "key": "type",
+                                  "value": "7"
+                                },
+                                {
+                                  "description": "Pagination cursor",
+                                  "key": "start_row_key",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Start timestamp in milliseconds",
+                                  "key": "start_time",
+                                  "value": "<long>"
+                                },
+                                {
+                                  "description": "End timestamp in milliseconds",
+                                  "key": "end_time",
+                                  "value": "<long>"
+                                },
+                                {
+                                  "description": "Number of records to return (max 50)",
+                                  "key": "size",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Comma-separated list of data point codes to filter by",
+                                  "key": "codes",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "device_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:18:09.000Z",
+                          "updatedAt": "2026-10-22T02:18:09.000Z",
+                          "uid": "35240-ddf7ae38-87d9-4c54-b7ba-f18ed37099e7"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:18:09.000Z",
+                      "updatedAt": "2026-10-22T02:18:09.000Z",
+                      "uid": "35240-f84b92ce-b731-4f50-8479-0d1a6eedf276"
+                    }
+                  ],
+                  "id": "9d30728e-2f6e-4fa1-9c16-19806ccc9748",
+                  "createdAt": "2026-10-22T02:18:09.000Z",
+                  "updatedAt": "2026-10-22T02:18:09.000Z",
+                  "uid": "35240-9d30728e-2f6e-4fa1-9c16-19806ccc9748"
                 }
               ],
-              "body": "{\n  \"result\": {\n    \"logs\": [\n      {\n        \"event_time\": 6346,\n        \"code\": \"string\",\n        \"value\": \"string\",\n        \"event_id\": \"string\"\n      },\n      {\n        \"event_time\": 2864,\n        \"code\": \"string\",\n        \"value\": \"string\",\n        \"event_id\": \"string\"\n      }\n    ],\n    \"current_row_key\": \"string\",\n    \"has_next\": false\n  },\n  \"success\": true,\n  \"t\": 540\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c967088b-53e2-4185-86c6-ea2c1e09ab58",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "logs"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "type",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "start_row_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "start_time",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "end_time",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "size",
-                      "value": "20"
-                    },
-                    {
-                      "key": "codes",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "5e85327a-6a60-4c4f-aa4b-87491957a523",
-              "name": "Device not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "logs"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "type",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "start_row_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "start_time",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "end_time",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "size",
-                      "value": "20"
-                    },
-                    {
-                      "key": "codes",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "1f691678-54f1-406c-b6c2-5e6eb76c8cb2",
+              "createdAt": "2026-10-22T02:18:09.000Z",
+              "updatedAt": "2026-10-22T02:18:09.000Z",
+              "uid": "35240-1f691678-54f1-406c-b6c2-5e6eb76c8cb2"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "87041ada-1676-4488-b0b8-0eb1dff63e1b",
+          "createdAt": "2026-10-22T02:18:09.000Z",
+          "updatedAt": "2026-10-22T02:18:09.000Z",
+          "uid": "35240-87041ada-1676-4488-b0b8-0eb1dff63e1b"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://openapi.tuyaus.com",
-      "key": "baseUrl"
+      "id": "68c1f6a2-9a89-4c13-90bb-4839bc884ae6",
+      "createdAt": "2026-10-22T02:18:09.000Z",
+      "updatedAt": "2026-10-22T02:18:09.000Z",
+      "uid": "35240-68c1f6a2-9a89-4c13-90bb-4839bc884ae6"
     }
   ],
   "auth": {
@@ -337,25 +354,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "client_id"
+        "value": "client_id",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "dc3b5fc6-826f-4e66-a9c8-5eb45a256931",
-    "name": "Tuya Device Management Device Control Device Logs API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Tuya Device Management API provides endpoints for querying, controlling, and managing IoT devices registered to a Tuya cloud project. Capabilities include device information retrieval, device control, factory reset, device renaming, sub-device listing, operation log queries, and user-device association management.\n\nContact Support:\n Name: Tuya Developer Support\n Email: developer@tuya.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://openapi.tuyaus.com"
     }
-  }
+  ]
 }

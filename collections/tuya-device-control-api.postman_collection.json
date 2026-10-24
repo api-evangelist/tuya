@@ -1,718 +1,701 @@
 {
+  "info": {
+    "_postman_id": "f0c2b6de-b8d4-4c0f-a342-e9d899298346",
+    "name": "Tuya Device Management Device Control API",
+    "description": "The Tuya Device Management API provides endpoints for querying, controlling, and managing IoT devices registered to a Tuya cloud project. Capabilities include device information retrieval, device control, factory reset, device renaming, sub-device listing, operation log queries, and user-device association management.\n\nContact Support:\n Name: Tuya Developer Support\n Email: developer@tuya.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:18:02.000Z",
+    "updatedAt": "2026-10-22T02:18:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f0c2b6de-b8d4-4c0f-a342-e9d899298346"
+  },
   "item": [
     {
-      "id": "abc7e3b6-e979-4deb-8056-2f3370d03645",
-      "name": "Device Control",
-      "description": {
-        "content": "Control and command IoT devices",
-        "type": "text/plain"
-      },
+      "name": "v1.0",
       "item": [
         {
-          "id": "d7510d99-6d98-4da7-8764-5c47d214e7f6",
-          "name": "Send Device Commands",
-          "request": {
-            "name": "Send Device Commands",
-            "description": {
-              "content": "Send one or more control commands to a device. Commands correspond to device data points (DPs) defined in the product schema.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1.0",
-                "devices",
-                ":device_id",
-                "commands"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "device_id",
-                  "description": "(Required) Unique device identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"commands\": [\n    {\n      \"code\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"code\": \"<string>\",\n      \"value\": {}\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "devices",
+          "item": [
             {
-              "id": "66df48a2-1300-4b43-99b8-fbc9e7220fab",
-              "name": "Commands sent successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "commands"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "{device_id}",
+              "item": [
+                {
+                  "name": "commands",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
+                      "name": "Send Device Commands",
+                      "id": "fa2ac790-8b9a-4879-a0cb-887f00afb54a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"commands\": [\n    {\n      \"code\": \"<string>\",\n      \"value\": {\n        \"description\": \"Command value matching the data point type\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"value\": {\n        \"description\": \"Command value matching the data point type\"\n      }\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1.0/devices/:device_id/commands",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1.0",
+                            "devices",
+                            ":device_id",
+                            "commands"
+                          ],
+                          "variable": [
+                            {
+                              "id": "06285cc2-db83-4e53-ad83-1821e823a40a",
+                              "key": "device_id",
+                              "value": "<string>",
+                              "description": "(Required) Unique device identifier"
+                            }
+                          ]
+                        },
+                        "description": "Send one or more control commands to a device. Commands correspond to device data points (DPs) defined in the product schema."
+                      },
+                      "response": [
+                        {
+                          "id": "e43fa798-cddd-48c7-a237-a8a5e94a0b5f",
+                          "name": "Commands sent successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "client_id",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"commands\": [\n    {\n      \"code\": \"<string>\",\n      \"value\": {\n        \"description\": \"Command value matching the data point type\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"value\": {\n        \"description\": \"Command value matching the data point type\"\n      }\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1.0/devices/:device_id/commands",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1.0",
+                                "devices",
+                                ":device_id",
+                                "commands"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "device_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": \"<boolean>\",\n  \"success\": \"<boolean>\",\n  \"t\": \"<long>\"\n}",
+                          "createdAt": "2026-10-22T02:18:03.000Z",
+                          "updatedAt": "2026-10-22T02:18:03.000Z",
+                          "uid": "35240-e43fa798-cddd-48c7-a237-a8a5e94a0b5f"
+                        },
+                        {
+                          "id": "e230c841-9846-409a-ad28-a8e9141b45c8",
+                          "name": "Invalid command",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "client_id",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"commands\": [\n    {\n      \"code\": \"<string>\",\n      \"value\": {\n        \"description\": \"Command value matching the data point type\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"value\": {\n        \"description\": \"Command value matching the data point type\"\n      }\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1.0/devices/:device_id/commands",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1.0",
+                                "devices",
+                                ":device_id",
+                                "commands"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "device_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:18:03.000Z",
+                          "updatedAt": "2026-10-22T02:18:03.000Z",
+                          "uid": "35240-e230c841-9846-409a-ad28-a8e9141b45c8"
+                        },
+                        {
+                          "id": "77877827-e64b-4a2f-898c-b8842f9920d5",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "client_id",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"commands\": [\n    {\n      \"code\": \"<string>\",\n      \"value\": {\n        \"description\": \"Command value matching the data point type\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"value\": {\n        \"description\": \"Command value matching the data point type\"\n      }\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1.0/devices/:device_id/commands",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1.0",
+                                "devices",
+                                ":device_id",
+                                "commands"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "device_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:18:03.000Z",
+                          "updatedAt": "2026-10-22T02:18:03.000Z",
+                          "uid": "35240-77877827-e64b-4a2f-898c-b8842f9920d5"
+                        },
+                        {
+                          "id": "76097f36-a94c-4fda-b3bd-ffaf2d3e0692",
+                          "name": "Device not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "client_id",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"commands\": [\n    {\n      \"code\": \"<string>\",\n      \"value\": {\n        \"description\": \"Command value matching the data point type\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"value\": {\n        \"description\": \"Command value matching the data point type\"\n      }\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1.0/devices/:device_id/commands",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1.0",
+                                "devices",
+                                ":device_id",
+                                "commands"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "device_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:18:03.000Z",
+                          "updatedAt": "2026-10-22T02:18:03.000Z",
+                          "uid": "35240-76097f36-a94c-4fda-b3bd-ffaf2d3e0692"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:18:03.000Z",
+                      "updatedAt": "2026-10-22T02:18:03.000Z",
+                      "uid": "35240-fa2ac790-8b9a-4879-a0cb-887f00afb54a"
                     }
-                  ]
+                  ],
+                  "id": "0547f596-59d4-478d-9442-23004e79e26d",
+                  "createdAt": "2026-10-22T02:18:03.000Z",
+                  "updatedAt": "2026-10-22T02:18:03.000Z",
+                  "uid": "35240-0547f596-59d4-478d-9442-23004e79e26d"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"commands\": [\n    {\n      \"code\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"code\": \"<string>\",\n      \"value\": {}\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"result\": false,\n  \"success\": false,\n  \"t\": 7678\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c9e3513c-0f5f-48ed-8f13-8f9fb44d31b2",
-              "name": "Invalid command",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "commands"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "name": "status",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
+                      "name": "Get Device Status",
+                      "id": "7140153e-fe99-4db7-9674-e7ff55b76a86",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1.0/devices/:device_id/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1.0",
+                            "devices",
+                            ":device_id",
+                            "status"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ea4d7d7d-5863-4c8b-b1e4-ffe6bdd25a3e",
+                              "key": "device_id",
+                              "value": "<string>",
+                              "description": "(Required) Unique device identifier"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve the current status of all data points for a device."
+                      },
+                      "response": [
+                        {
+                          "id": "51616730-e0fd-4cd5-b75c-849b80780cbf",
+                          "name": "Device status data points",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "client_id",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1.0/devices/:device_id/status",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1.0",
+                                "devices",
+                                ":device_id",
+                                "status"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "device_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": [\n    {\n      \"code\": \"<string>\",\n      \"value\": {\n        \"description\": \"Current value of the data point\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"value\": {\n        \"description\": \"Current value of the data point\"\n      }\n    }\n  ],\n  \"success\": \"<boolean>\",\n  \"t\": \"<long>\"\n}",
+                          "createdAt": "2026-10-22T02:18:03.000Z",
+                          "updatedAt": "2026-10-22T02:18:03.000Z",
+                          "uid": "35240-51616730-e0fd-4cd5-b75c-849b80780cbf"
+                        },
+                        {
+                          "id": "9241c5fa-6650-4ab3-a03a-7ce026aa2a92",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "client_id",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1.0/devices/:device_id/status",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1.0",
+                                "devices",
+                                ":device_id",
+                                "status"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "device_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:18:03.000Z",
+                          "updatedAt": "2026-10-22T02:18:03.000Z",
+                          "uid": "35240-9241c5fa-6650-4ab3-a03a-7ce026aa2a92"
+                        },
+                        {
+                          "id": "c8166223-f623-41ff-a010-5d27b9f5970e",
+                          "name": "Device not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "client_id",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1.0/devices/:device_id/status",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1.0",
+                                "devices",
+                                ":device_id",
+                                "status"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "device_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:18:03.000Z",
+                          "updatedAt": "2026-10-22T02:18:03.000Z",
+                          "uid": "35240-c8166223-f623-41ff-a010-5d27b9f5970e"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:18:03.000Z",
+                      "updatedAt": "2026-10-22T02:18:03.000Z",
+                      "uid": "35240-7140153e-fe99-4db7-9674-e7ff55b76a86"
                     }
-                  ]
+                  ],
+                  "id": "ff031566-d69d-4d54-890f-0ae577f20059",
+                  "createdAt": "2026-10-22T02:18:03.000Z",
+                  "updatedAt": "2026-10-22T02:18:03.000Z",
+                  "uid": "35240-ff031566-d69d-4d54-890f-0ae577f20059"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"commands\": [\n    {\n      \"code\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"code\": \"<string>\",\n      \"value\": {}\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "74dde264-d04f-4f33-8c53-9dc86fdb25cc",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "commands"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "name": "reset-factory",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
+                      "name": "Reset Device to Factory Settings",
+                      "id": "e1aaaa28-7f46-4ca9-9a44-02da1c696e77",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1.0/devices/:device_id/reset-factory",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1.0",
+                            "devices",
+                            ":device_id",
+                            "reset-factory"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0449d1c9-e282-47d8-8f95-0fc749ae9b70",
+                              "key": "device_id",
+                              "value": "<string>",
+                              "description": "(Required) Unique device identifier"
+                            }
+                          ]
+                        },
+                        "description": "Restore a device to its factory default settings and unpair it from the current account."
+                      },
+                      "response": [
+                        {
+                          "id": "e3c41370-4cd4-4bc9-82bd-59465128d427",
+                          "name": "Device reset initiated",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "client_id",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1.0/devices/:device_id/reset-factory",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1.0",
+                                "devices",
+                                ":device_id",
+                                "reset-factory"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "device_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": \"<boolean>\",\n  \"success\": \"<boolean>\",\n  \"t\": \"<long>\"\n}",
+                          "createdAt": "2026-10-22T02:18:03.000Z",
+                          "updatedAt": "2026-10-22T02:18:03.000Z",
+                          "uid": "35240-e3c41370-4cd4-4bc9-82bd-59465128d427"
+                        },
+                        {
+                          "id": "2602e4b8-aec9-4c53-87fc-a6d49e021ffd",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "client_id",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1.0/devices/:device_id/reset-factory",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1.0",
+                                "devices",
+                                ":device_id",
+                                "reset-factory"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "device_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:18:03.000Z",
+                          "updatedAt": "2026-10-22T02:18:03.000Z",
+                          "uid": "35240-2602e4b8-aec9-4c53-87fc-a6d49e021ffd"
+                        },
+                        {
+                          "id": "f480e5e9-79c9-4f36-bcfe-15182848b239",
+                          "name": "Device not found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "client_id",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1.0/devices/:device_id/reset-factory",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1.0",
+                                "devices",
+                                ":device_id",
+                                "reset-factory"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "device_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:18:03.000Z",
+                          "updatedAt": "2026-10-22T02:18:03.000Z",
+                          "uid": "35240-f480e5e9-79c9-4f36-bcfe-15182848b239"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:18:03.000Z",
+                      "updatedAt": "2026-10-22T02:18:03.000Z",
+                      "uid": "35240-e1aaaa28-7f46-4ca9-9a44-02da1c696e77"
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"commands\": [\n    {\n      \"code\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"code\": \"<string>\",\n      \"value\": {}\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "id": "c8b0d2ac-16b3-4e0e-a11e-5cd8bc2ef65a",
+                  "createdAt": "2026-10-22T02:18:03.000Z",
+                  "updatedAt": "2026-10-22T02:18:03.000Z",
+                  "uid": "35240-c8b0d2ac-16b3-4e0e-a11e-5cd8bc2ef65a"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "790fb622-fe10-47d9-93ad-6557229a1a05",
-              "name": "Device not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "commands"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"commands\": [\n    {\n      \"code\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"code\": \"<string>\",\n      \"value\": {}\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "dbd7146f-20f9-405c-9d95-3e777ebbe6e1",
-          "name": "Get Device Status",
-          "request": {
-            "name": "Get Device Status",
-            "description": {
-              "content": "Retrieve the current status of all data points for a device.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1.0",
-                "devices",
-                ":device_id",
-                "status"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "device_id",
-                  "description": "(Required) Unique device identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "8254b2f5-7afb-4bd2-92f6-cd0dccb67c30",
-              "name": "Device status data points",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "status"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"result\": [\n    {\n      \"code\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"code\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"success\": false,\n  \"t\": 5357\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "cb515b70-b61b-43a0-b676-47f0e79708d0",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "status"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "abc4451f-fac2-470b-aea9-0170ab39b7fc",
-              "name": "Device not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "status"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ab8c08ca-c841-4373-a959-28dc122bb50e",
-          "name": "Reset Device to Factory Settings",
-          "request": {
-            "name": "Reset Device to Factory Settings",
-            "description": {
-              "content": "Restore a device to its factory default settings and unpair it from the current account.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1.0",
-                "devices",
-                ":device_id",
-                "reset-factory"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "device_id",
-                  "description": "(Required) Unique device identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "f93d8cdf-63cd-4a8d-bad3-a7a0c005da13",
-              "name": "Device reset initiated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "reset-factory"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"result\": false,\n  \"success\": false,\n  \"t\": 7678\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "70d1c383-0111-4c8d-8f21-62d9901779f5",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "reset-factory"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "68919c98-61f4-4a19-a435-ede6410c9bab",
-              "name": "Device not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1.0",
-                    "devices",
-                    ":device_id",
-                    "reset-factory"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "device_id",
-                      "description": "(Required) Unique device identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "client_id",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "65d53333-fe2b-43a4-9ec6-be5a78fadbd5",
+              "createdAt": "2026-10-22T02:18:03.000Z",
+              "updatedAt": "2026-10-22T02:18:03.000Z",
+              "uid": "35240-65d53333-fe2b-43a4-9ec6-be5a78fadbd5"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "ae551dfa-6570-457d-a6e1-c0079aecde0a",
+          "createdAt": "2026-10-22T02:18:03.000Z",
+          "updatedAt": "2026-10-22T02:18:03.000Z",
+          "uid": "35240-ae551dfa-6570-457d-a6e1-c0079aecde0a"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://openapi.tuyaus.com",
-      "key": "baseUrl"
+      "id": "ea5a7181-c954-48c5-b574-b35de3728730",
+      "createdAt": "2026-10-22T02:18:03.000Z",
+      "updatedAt": "2026-10-22T02:18:03.000Z",
+      "uid": "35240-ea5a7181-c954-48c5-b574-b35de3728730"
     }
   ],
   "auth": {
@@ -720,25 +703,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "client_id"
+        "value": "client_id",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "342b250c-a690-4cb4-a82d-c913f128093b",
-    "name": "Tuya Device Management Device Control API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Tuya Device Management API provides endpoints for querying, controlling, and managing IoT devices registered to a Tuya cloud project. Capabilities include device information retrieval, device control, factory reset, device renaming, sub-device listing, operation log queries, and user-device association management.\n\nContact Support:\n Name: Tuya Developer Support\n Email: developer@tuya.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://openapi.tuyaus.com"
     }
-  }
+  ]
 }
